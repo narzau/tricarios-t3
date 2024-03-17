@@ -1,5 +1,16 @@
 import React from 'react';
-export const Producto = ({product, setOpenAmountAdd}) => {
+
+type ProductProps = {
+    product: {
+        title: string;
+        id: number;
+        stock: number;
+        price: number;
+      };
+    setOpenAmountAdd: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+
+export const Producto: React.FC<ProductProps> = ({product, setOpenAmountAdd}) => {
     const amountToAdd = () => {
         setOpenAmountAdd(true) 
     }

@@ -1,17 +1,33 @@
 // components/Home.tsx
+'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import Nav from './Nav';
-import Inventario from './Inventario';
+import Inventory from './Inventory';
+import Sells from './Sells';
+import Purchases from './Purchases';
 
-const Home: React.FC = () => {
+const Homee: React.FC = () => {
+  const [whyView, setWhyView] = useState('Inventario')
+  let content;
+
+  switch (whyView) {
+    case 'Inventario':
+      content = <Inventory />;
+      break;
+    case 'Ventas':
+      content = <Sells />;
+      break;
+    default:
+      content = <Purchases />;
+      break;
+  }
   return (
     <div>
-      <h1>Welcome to the Home Page!</h1>
-      <Nav functionalities={["Inventario", "Ventas", "Compras"]} />
-			<Inventario />
+      <Nav setWhyView={setWhyView} functionalities={["Inventario", "Ventas", "Compras"]} />
+      {content}
     </div>
   );
 };
 
-export default Home;
+export default Homee;
