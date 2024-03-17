@@ -14,20 +14,53 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Product {
+model BaseProduct {
     id        Int      @id @default(autoincrement())
     productImage    String?
-    code      String      @unique
-    name      String
-    stock     Int
+    code      String?      @unique
+    displayName      String
+    brand    String?
+    model String?
+    stockedProducts StockedProduct[]
+    boughtProducts BoughtProduct[]
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    
+    createdBy   User   @relation(fields: [createdById], references: [id])
+    createdById String
 
+    @@index([displayName, code, brand])
+}
+
+model BoughtProduct {
+    id        Int      @id @default(autoincrement())
+    quantity  Int
+    price     Float?
+    
+    product   BaseProduct @relation(fields: [productId], references: [id])
+    productId Int
+    
+    
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     createdBy   User   @relation(fields: [createdById], references: [id])
     createdById String
+}
 
-    @@index([name])
+model StockedProduct {
+    id        Int      @id @default(autoincrement())
+    stock     Int
+    listPrice Float
+    discountPercentage   Float
+    productId Int
+    product   BaseProduct @relation(fields: [productId], references: [id])
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([productId])
 }
 
 // Necessary for Next auth
@@ -65,7 +98,8 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    products         Product[]
+    basedProducts           BaseProduct[]
+    boughtProducts          BoughtProduct[]
 }
 
 model VerificationToken {

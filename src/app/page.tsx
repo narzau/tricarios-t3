@@ -70,21 +70,3 @@ export default async function Home() {
   );
 }
 
-async function CrudShowcase() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
-
-  const latestProduct = await api.product.getLatest();
-
-  return (
-    <div className="w-full max-w-xs">
-      {latestProduct ? (
-        <p className="truncate">Your most recent product: {latestProduct.name}</p>
-      ) : (
-        <p>You have no Products yet.</p>
-      )}
-
-      <CreateProduct />
-    </div>
-  );
-}

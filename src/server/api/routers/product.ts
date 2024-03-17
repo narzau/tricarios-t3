@@ -14,33 +14,120 @@ export const productRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
-
-  create: protectedProcedure
+  addProductToInventory: protectedProcedure
     .input(z.object({
-      name: z.string().min(1),
+      productId: z.number().optional(),
+      displayName: z.string(),
+      brand: z.string().optional(),
+      model: z.string().optional(),
       code: z.string().optional(),
-      stock: z.number().default(1)
+      quantity: z.number(),
+      price: z.number().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      return ctx.db.product.create({
+      let product;
+      if (input.productId) {
+        product = await ctx.db.baseProduct.findUnique({
+          where: { id: input.productId },
+        });
+      } 
+      if (!product) {
+        product = await ctx.db.baseProduct.create({
+          data: {
+            displayName: input.displayName,
+            brand: input.brand,
+            model: input.model,
+            code: input.code,
+            createdById: ctx.session.user.id,
+          },
+        });
+      }
+      await ctx.db.boughtProduct.create({
         data: {
-          name: input.name,
-          code: input.code ? input.code : Math.random().toString(36).substring(7),
-          stock: input.stock,
-          createdBy: { connect: { id: ctx.session.user.id } },
+          productId: product.id,
+          quantity: input.quantity,
+          price: input.price,
+          createdById: ctx.session.user.id,
+        },
+      });
+      await ctx.db.stockedProduct.upsert({
+        create: {
+          productId: product.id,
+          stock: input.quantity,
+          discountPercentage: 0,
+          listPrice: 0
+        },
+        update: {
+          stock: {
+            increment: input.quantity,
+          },
+        },
+        where: {
+          productId: product.id,
         },
       });
     }),
-
-  getLatest: protectedProcedure.query(({ ctx }) => {
-    return ctx.db.product.findFirst({
-      orderBy: { createdAt: "desc" },
-      where: { createdBy: { id: ctx.session.user.id } },
-    });
-  }),
-
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  getPaginatedBaseProducts: protectedProcedure
+    .input(z.object({ 
+      skip: z.number().default(0), 
+      take: z.number().default(10),
+      nameFilter: z.string().optional(),
+    }).optional())
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.baseProduct.findMany({
+        skip: input && input.skip,
+        take: input && input.take,
+        where: {
+          displayName: {
+            contains: input && input.nameFilter,
+            mode: "insensitive",
+          },
+        },
+      });
+    }),
+  getBaseProductById: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.baseProduct.findUnique({
+        where: { id: input.id },
+      });
+    }),
+  getPaginatedInventory: protectedProcedure
+    .input(z.object({ 
+      skip: z.number().default(0), 
+      take: z.number().default(10),
+      nameFilter: z.string().optional(),
+    }).optional())
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.stockedProduct.findMany({
+        skip: input && input.skip,
+        take: input && input.take,
+        where: {
+          product: {
+            displayName: {
+              contains: input && input.nameFilter,
+              mode: "insensitive",
+            },
+          },
+        },
+        include: { product: true },
+      });
+    }),
+  updateStockedProduct: protectedProcedure
+    .input(z.object({
+      id: z.number(),
+      discountPercentage: z.number().optional(),
+      listPrice: z.number().optional(),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.stockedProduct.update({
+        where: { 
+          productId: input.id,
+        },
+        data: {
+          discountPercentage: input.discountPercentage || 0,
+          listPrice: input.listPrice || undefined,
+        },
+      });
+    }),
 });
