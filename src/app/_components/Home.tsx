@@ -23,7 +23,7 @@ const Homee: React.FC = () => {
       break;
   }
   return (
-    <div>
+    <div className='text-black'>
       <Nav setWhyView={setWhyView} functionalities={["Inventario", "Ventas", "Compras"]} />
       {content}
     </div>

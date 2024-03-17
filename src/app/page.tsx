@@ -2,6 +2,7 @@
 import { CreateProduct } from "~/app/_components/create-product";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import Link from "next/link";
 
 export default async function Home() {
   const hello = await api.product.hello({ text: "from tRPC" });
@@ -57,7 +58,7 @@ export default async function Home() {
                 href={"/products"}
                 className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
               >
-                Dashboard
+                Home
               </Link>
               : null
             }

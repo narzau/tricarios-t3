@@ -16,7 +16,7 @@ const Inventory: React.FC = () => {
 	}]
   return (
 		<div>
-			<div className='bg-slate-200 w-[80%] mx-auto p-6 text-center  flex items-center  justify-around '>
+			<div className='bg-slate-600 w-[80%] mx-auto p-6 text-center  flex items-center  justify-around '>
 				<p className='w-[20%]'>Titulo</p>
         <p className='w-[20%]'>ID</p>
         <p className='w-[20%]'>Cantidad</p>

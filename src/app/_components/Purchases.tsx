@@ -10,7 +10,7 @@ const Purchases: React.FC = () => {
 	}]
   return (
 		<div>
-            <div className="flex flex-row justify-around items-center w-[80%] p-6 bg-slate-200 mx-auto">
+            <div className="flex flex-row justify-around items-center w-[80%] p-6 bg-slate-600 mx-auto">
 				<p className="w-[25%] text-center">ID Compra</p>
 				<p className="w-[25%] text-center">Cantidad de Items</p>
 				<p className="w-[25%] text-center">Precio Total</p>
