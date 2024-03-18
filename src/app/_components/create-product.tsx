@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
 import type { BaseProduct } from "@prisma/client";
@@ -53,7 +53,7 @@ export function CreateProduct() {
   });
 
   return (
-    <div>
+    <div className="flex flex-col h-screen overflow-x-hidden overflow-y-scroll">
 
         <div className="container mx-auto mt-8">
           <Dropdown
@@ -74,7 +74,7 @@ export function CreateProduct() {
           e.preventDefault();
           createProduct.mutate({ displayName, brand, model, code, quantity, price, productId });
         }}
-        className="flex flex-col gap-2 text-white"
+        className="flex flex-col gap-2  text-gray-700 px-36 rounded-lg self-center shadow-2xl"
       >
         <InputField label="Nombre" value={displayName} onChange={(e) => setDisplayName(e.target.value)} disabled={isSelected} />
         <InputField label="Marca" value={brand} onChange={(e) => setBrand(e.target.value)} disabled={isSelected} />
@@ -84,7 +84,7 @@ export function CreateProduct() {
         <InputField label="Precio" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
         <button
           type="submit"
-          className="rounded-full bg-white/10  py-3 font-semibold transition hover:bg-white/20 my-10 w-36 text-center content-center self-center"
+          className="rounded-md bg-gray-300/80  py-3 font-semibold uppercase tracking-wide transition hover:bg-gray-500/80 my-10 w-36 text-center content-center self-center"
           disabled={createProduct.isPending}
         >
           {createProduct.isPending ? "Cargando..." : "Cargar"}
@@ -102,13 +102,13 @@ interface InputFieldProps {
 
 const InputField: React.FC<InputFieldProps> = ({ label, value, onChange, disabled = false }) => {
   return (
-    <div className="flex center content-center items-center gap-4  flex-col">
-      <div>{label}</div>
+    <div className="flex center content-center items-center py-4 flex-col">
+      <div className="uppercase tracking-normal">{label}</div>
       <input
         type="text"
         value={value}
         onChange={onChange}
-        className={`rounded-full bg-white/10 p-3 ${disabled ? "bg-white/5 text-gray-400" : ""}`}
+        className={`rounded-md shadow-lg border-2 border-gray-100  bg-white/10 p-3 ${disabled ? "bg-white/5 text-gray-400" : ""}`}
         disabled={disabled}
       />
     </div>
@@ -126,26 +126,38 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ onSelect, selectedValue, setSelectedValue }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
-  
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { data } = api.product.getPaginatedBaseProducts.useQuery({nameFilter: searchTerm}, {
     enabled: !!searchTerm || true,
   });
-  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const handleSelectOption = (option: BaseProduct) => {
     onSelect(option);
     setIsOpen(false);
     setSelectedValue(option);
   };
 
-
   return (
     <div className="flex items-center justify-center">
-      <div className="relative group">
+      <div className="relative group w-80  z-10" ref={dropdownRef}>
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+          className="cursor-pointer inline-flex justify-center w-full px-4 py-2 text-sm font-medium  bg-gray-300 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
         >
-          <span className="mr-2">{selectedValue ? selectedValue.displayName : 'Seleccionar producto'}</span>
+          <span className="mr-2 text-black/80">{selectedValue ? selectedValue.displayName : 'Seleccionar producto existente'}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5 ml-2 -mr-1"
@@ -161,10 +173,10 @@ const Dropdown: React.FC<DropdownProps> = ({ onSelect, selectedValue, setSelecte
           </svg>
         </div>
         <div
-          className={`${isOpen ? '' : 'hidden'} absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1`}
+          className={`${isOpen ? '' : 'hidden'} absolute right-0 mt-2 rounded-md shadow-lg w-80 bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1`}
         >
           <input
-             onChange={(e) => {
+            onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
             value={searchTerm}

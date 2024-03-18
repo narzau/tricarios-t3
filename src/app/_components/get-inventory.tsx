@@ -48,10 +48,11 @@ export const GetInventory: React.FC = () => {
       }
     };
 
- 
+    const [addedToCart, setAddedToCart] = useState<number[]>([]); // State to track products added to cart
+
 
     return (
-      <div className="overflow-hidden border border-gray-200 rounded-lg shadow-lg">
+      <div className="overflow-x-hiden border border-gray-200 rounded-lg h-screen shadow-lg">
         <input
              onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -63,51 +64,51 @@ export const GetInventory: React.FC = () => {
             autoComplete="off"
           />
         <table className="min-w-full divide-y divide-gray-200 text-center">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 text-md">
             <tr>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 ID
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Nombre de producto
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Marca
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Modelo
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Precio de lista
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Cantidad en stock
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Descuento
               </th>
-              <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-200 text-md ">
             {data ? data.map((product, index) => (
               <React.Fragment key={index}>
                 <tr className="">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {product.product.id}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {product.product.displayName}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {product.product.brand}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {product.product.model}
                   </td>
-                  <td onClick={() => handleEditPrice(index, product.listPrice)} className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td onClick={() => handleEditPrice(index, product.listPrice)} className="cursor-pointer px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     <div className="flex items-center justify-center"> 
                       {editablePrice === index ?
                         <div className='flex items-center'>
@@ -145,8 +146,8 @@ export const GetInventory: React.FC = () => {
                       }
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.stock}</td>
-                  <td onClick={() => handleEditDiscount(index, product.discountPercentage)} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900 text-xl">{product.stock}</td>
+                  <td onClick={() => handleEditDiscount(index, product.discountPercentage)} className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     <div className="flex items-center justify-center"> 
                       {editableDiscount === index ?
                         <div className='flex items-center'>
@@ -184,14 +185,22 @@ export const GetInventory: React.FC = () => {
                       }
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                   <div className="flex items-center justify-center">
                     {isInCart(product.product.id, product.stock) ? (
                         <span className="text-gray-500">En la caja</span>
                     ) : product.stock > 0 ? (
-                        <button onClick={() => addProductToCart(product as StoreProduct)} className="bg-green-500 text-white px-4 py-2 rounded-md">
-                            Agregar a caja
-                        </button>
+<button
+    onClick={() => {
+        addProductToCart(product as StoreProduct);
+    }}
+    className={`bg-green-500 text-white px-4 py-2 rounded-md ${
+        productsInCart.map(product => product.id).includes(product.product.id) ? 'opacity-50 cursor-not-allowed' : ''
+    }`}
+    disabled={addedToCart.includes(product.product.id)}
+>
+    {productsInCart.map(product => product.productId).includes(product.productId) ? 'Agregado' : 'Agregar a caja'}
+</button>
                     ) : (
                         <span className="text-gray-500">Sin stock</span>
                     )}

@@ -20,46 +20,46 @@ export const SalesCart: React.FC = () => {
     };
 
     return (
-        <div className="overflow-hidden border border-gray-200 rounded-lg shadow-lg">
+        <div className="overflow-y-scroll border border-gray-200 rounded-lg shadow-lg h-screen max-h-screen overflox-x-hidden">
             <table className="min-w-full divide-y divide-gray-200 text-center">
-                <thead className="bg-gray-50">
+                <thead className="bg-gray-50 text-md">
                     <tr>
-                        <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+                        <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                             ID
                         </th>
-                        <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+                        <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                             Nombre de producto
                         </th>
-                        <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+                        <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                             Precio por unidad
                         </th>
-                        <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+                        <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                             Descuento
                         </th>
-                        <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+                        <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                             Cantidad
                         </th>
-                        <th scope="col" className="px-6 py-3  text-xs font-semibold text-gray-500 uppercase">
+                        <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                             
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-gray-200 text-lg">
                     {products.map((product) => (
                         <tr key={product.id}>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">{product.product.id}</div>
+                                <div className=" text-gray-900">{product.product.id}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">{product.product.displayName}</div>
+                                <div className=" text-gray-900">{product.product.displayName}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">{product.listPrice}</div>
+                                <div className=" text-gray-900">{product.listPrice}</div>
                             </td><td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">% {product.discountPercentage}</div>
+                                <div className=" text-gray-900">% {product.discountPercentage}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">
+                                <div className=" text-gray-900">
                                     {calculateMaxQuantity(product)}
                                 </div>
                             </td>
@@ -82,9 +82,12 @@ export const SalesCart: React.FC = () => {
                 </tbody>
             </table>
             <div className={`p-4 ${products.length ? 'flex' : 'hidden'} flex-col items-center justify-center w-full gap-4`}>
-                Descuento sobre el total: 
+                Porcentajde de descuento sobre el total
+                <div>
+                %
                 <input
                     type="number"
+                    prefix='%'
                     className="px-4 py-2 w-20 border border-gray-300 rounded-md"
                     value={discountPercentage === 0 ? '' : discountPercentage}
                     min={0}
@@ -103,6 +106,7 @@ export const SalesCart: React.FC = () => {
                         }
                     }}
                 />
+                </div>
                 <div className='font-bold'>
                     Total: ${calculateTotal()}
                 </div>
