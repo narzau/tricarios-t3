@@ -48,7 +48,6 @@ export const GetInventory: React.FC = () => {
       }
     };
 
-    const [addedToCart, setAddedToCart] = useState<number[]>([]); // State to track products added to cart
 
 
     return (
@@ -195,9 +194,9 @@ export const GetInventory: React.FC = () => {
         addProductToCart(product as StoreProduct);
     }}
     className={`bg-green-500 text-white px-4 py-2 rounded-md ${
-        productsInCart.map(product => product.id).includes(product.product.id) ? 'opacity-50 cursor-not-allowed' : ''
+        productsInCart.map(product => product.productId).includes(product.product.id) ? 'opacity-50 cursor-not-allowed' : ''
     }`}
-    disabled={addedToCart.includes(product.product.id)}
+    disabled={productsInCart.map(product => product.productId).includes(product.productId)}
 >
     {productsInCart.map(product => product.productId).includes(product.productId) ? 'Agregado' : 'Agregar a caja'}
 </button>
