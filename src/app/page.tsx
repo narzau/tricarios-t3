@@ -1,5 +1,4 @@
 
-import { CreateProduct } from "~/app/_components/create-product";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import Link from "next/link";

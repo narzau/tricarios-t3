@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 
-const YourPage: React.FC = async () => {
+const YourPage: React.FC = () => {
   const sales: Sale[] = [
     { 
       productsSold: [

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "~/trpc/react";
-import { BaseProduct } from "@prisma/client";
+import type { BaseProduct } from "@prisma/client";
 
 export function CreateProduct() {
   const router = useRouter();
@@ -18,9 +18,9 @@ export function CreateProduct() {
 
   const handleSelectOption = (selectedProduct: BaseProduct) => {
     setDisplayName(selectedProduct.displayName);
-    setBrand(selectedProduct.brand || "");
-    setModel(selectedProduct.model || "");
-    setCode(selectedProduct.code || "");
+    setBrand(selectedProduct.brand ?? "");
+    setModel(selectedProduct.model ?? "");
+    setCode(selectedProduct.code ?? "");
     setProductId(selectedProduct.id);
     setIsSelected(true);
   };

@@ -1,7 +1,8 @@
 "use client"
 import { useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { api } from "~/trpc/react";
+import { type StoreProduct, useSalesCartStore } from "../store/global";
 
 export const GetInventory: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
@@ -10,6 +11,13 @@ export const GetInventory: React.FC = () => {
     const [editedDiscount, setEditedDiscount] = useState<number | null>(null); // State to track changes to edited price
     const [editedPrice, setEditedPrice] = useState<number | null>(null); // State to track changes to edited price
     const router = useRouter();
+    const addProductToCart = useSalesCartStore((state) => state.addProduct)
+    const productsInCart = useSalesCartStore((state) => state.products);
+
+    const isInCart = (productId: number, stock: number) => {
+      const productInCart = productsInCart.find((product) => product.product.id === productId);
+      return productInCart && productInCart.quantity === stock;
+  };
 
     const result = api.product.getPaginatedInventory.useQuery({nameFilter: searchTerm}, {
       enabled: !!searchTerm || true,
@@ -17,13 +25,13 @@ export const GetInventory: React.FC = () => {
 
     const { data } = result
     const updateStockedProduct = api.product.updateStockedProduct.useMutation({
-      onSuccess: () => {
+      onSuccess: async () => {
         setEditedPrice(null);
         setEditablePrice(null);
         setEditableDiscount(null);
         setEditedDiscount(null);
         router.refresh();
-        result.refetch();
+        await result.refetch();
       },
     });
 
@@ -39,6 +47,8 @@ export const GetInventory: React.FC = () => {
         setEditedDiscount(discount);
       }
     };
+
+ 
 
     return (
       <div className="overflow-hidden border border-gray-200 rounded-lg shadow-lg">
@@ -82,41 +92,43 @@ export const GetInventory: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {data ? data.map((sale, index) => (
+            {data ? data.map((product, index) => (
               <React.Fragment key={index}>
-                <tr className="cursor-pointer">
+                <tr className="">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {sale.product.id}
+                    {product.product.id}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {sale.product.displayName}
+                    {product.product.displayName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {sale.product.brand}
+                    {product.product.brand}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {sale.product.model}
+                    {product.product.model}
                   </td>
-                  <td onClick={() => handleEditPrice(index, sale.listPrice)} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td onClick={() => handleEditPrice(index, product.listPrice)} className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div className="flex items-center justify-center"> 
                       {editablePrice === index ?
                         <div className='flex items-center'>
                         <input
                           type="number"
                           prefix="$"
-                          value={editedPrice !== null ? editedPrice : sale.listPrice}
+                          value={editedPrice !== null ? editedPrice : product.listPrice}
                           onChange={(e) => setEditedPrice(parseFloat(e.target.value))}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                              e.preventDefault(); // Prevent form submission
-                              e.target.nextSibling.click(); // Trigger click event of the next sibling (button)
+                              e.preventDefault();
+                              const target = e.target as HTMLInputElement;
+                              const nextSiblingElement = target.nextSibling as HTMLElement | null;
+                              nextSiblingElement?.click();
                             }
                           }}
                           className="px-3 w-28 py-1 border rounded-md focus:outline-none"
                         />
                         <button onClick={(e) => {
                           e.preventDefault();
-                          editedPrice ? updateStockedProduct.mutate({ id: sale.product.id, listPrice: editedPrice }) : undefined;
+                          editedPrice ? updateStockedProduct.mutate({ id: product.product.id, listPrice: editedPrice }) : undefined;
                         }} className="ml-2">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-green-500">
                             <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
@@ -125,7 +137,7 @@ export const GetInventory: React.FC = () => {
                       </div>
                       : 
                         <div className='flex items-center'>
-                            <p className="mr-2">$ {sale.listPrice.toLocaleString()}</p>
+                            <p className="mr-2">$ {product.listPrice.toLocaleString()}</p>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 flex-shrink-0">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                           </svg>
@@ -133,27 +145,29 @@ export const GetInventory: React.FC = () => {
                       }
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{sale.stock}</td>
-                  <td onClick={() => handleEditDiscount(index, sale.discountPercentage)} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.stock}</td>
+                  <td onClick={() => handleEditDiscount(index, product.discountPercentage)} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div className="flex items-center justify-center"> 
                       {editableDiscount === index ?
                         <div className='flex items-center'>
                           <input
                             type="text"
 
-                            value={editedDiscount !== null ? editedDiscount : sale.discountPercentage}
+                            value={editedDiscount !== null ? editedDiscount : product.discountPercentage}
                             onChange={(e) => setEditedDiscount(parseFloat(e.target.value) || 0)}
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
-                                e.preventDefault(); // Prevent form submission
-                                e.target.nextSibling.click(); // Trigger click event of the next sibling (button)
+                                e.preventDefault();
+                                const target = e.target as HTMLInputElement;
+                                const nextSiblingElement = target.nextSibling as HTMLElement | null;
+                                nextSiblingElement?.click();
                               }
                             }}
                             className="px-3 w-12 py-1 border rounded-md focus:outline-none"
                           />
                           <button onClick={(e) => {
                             e.preventDefault();
-                            editedDiscount !== null ? updateStockedProduct.mutate({ id: sale.product.id, discountPercentage: editedDiscount }) : undefined;
+                            editedDiscount !== null ? updateStockedProduct.mutate({ id: product.product.id, discountPercentage: editedDiscount }) : undefined;
                           }} className="ml-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-green-500">
                               <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clipRule="evenodd" />
@@ -162,7 +176,7 @@ export const GetInventory: React.FC = () => {
                         </div>
                       : 
                         <div className='flex items-center'>
-                          <p className="mr-2">% {sale.discountPercentage}</p>
+                          <p className="mr-2">% {product.discountPercentage}</p>
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 flex-shrink-0">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                           </svg>
@@ -170,7 +184,19 @@ export const GetInventory: React.FC = () => {
                       }
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Editar</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <div className="flex items-center justify-center">
+                    {isInCart(product.product.id, product.stock) ? (
+                        <span className="text-gray-500">En la caja</span>
+                    ) : product.stock > 0 ? (
+                        <button onClick={() => addProductToCart(product as StoreProduct)} className="bg-green-500 text-white px-4 py-2 rounded-md">
+                            Agregar a caja
+                        </button>
+                    ) : (
+                        <span className="text-gray-500">Sin stock</span>
+                    )}
+                </div>
+                            </td>
                 </tr>
               </React.Fragment>
             )) : undefined}

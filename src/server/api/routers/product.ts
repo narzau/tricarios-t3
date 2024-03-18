@@ -75,11 +75,11 @@ export const productRouter = createTRPCRouter({
     }).optional())
     .query(async ({ ctx, input }) => {
       return await ctx.db.baseProduct.findMany({
-        skip: input && input.skip,
-        take: input && input.take,
+        skip: input?.skip,
+        take: input?.take,
         where: {
           displayName: {
-            contains: input && input.nameFilter,
+            contains: input?.nameFilter,
             mode: "insensitive",
           },
         },
@@ -100,12 +100,12 @@ export const productRouter = createTRPCRouter({
     }).optional())
     .query(async ({ ctx, input }) => {
       return await ctx.db.stockedProduct.findMany({
-        skip: input && input.skip,
-        take: input && input.take,
+        skip: input?.skip,
+        take: input?.take,
         where: {
           product: {
             displayName: {
-              contains: input && input.nameFilter,
+              contains: input?.nameFilter,
               mode: "insensitive",
             },
           },
@@ -125,8 +125,8 @@ export const productRouter = createTRPCRouter({
           productId: input.id,
         },
         data: {
-          discountPercentage: input.discountPercentage || 0,
-          listPrice: input.listPrice || undefined,
+          discountPercentage: input.discountPercentage ?? 0,
+          listPrice: input.listPrice ?? undefined,
         },
       });
     }),
