@@ -84,7 +84,7 @@ export function CreateProduct() {
         <InputField label="Precio" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
         <button
           type="submit"
-          className="rounded-full bg-white/10  py-3 font-semibold transition hover:bg-white/20 my-10 w-36 text-center content-center self-center"
+          className="rounded-full bg-white/10  py-1 font-semibold transition hover:bg-white/20 my-5 w-36 text-center content-center self-center"
           disabled={createProduct.isPending}
         >
           {createProduct.isPending ? "Cargando..." : "Cargar"}
@@ -102,13 +102,13 @@ interface InputFieldProps {
 
 const InputField: React.FC<InputFieldProps> = ({ label, value, onChange, disabled = false }) => {
   return (
-    <div className="flex center content-center items-center gap-4  flex-col">
+    <div className="flex center content-center items-center gap-2  flex-col">
       <div>{label}</div>
       <input
         type="text"
         value={value}
         onChange={onChange}
-        className={`rounded-full bg-white/10 p-3 ${disabled ? "bg-white/5 text-gray-400" : ""}`}
+        className={`rounded-full bg-white/10 p-2 ${disabled ? "bg-white/5 text-gray-400" : ""}`}
         disabled={disabled}
       />
     </div>
@@ -140,7 +140,7 @@ const Dropdown: React.FC<DropdownProps> = ({ onSelect, selectedValue, setSelecte
 
   return (
     <div className="flex items-center justify-center">
-      <div className="relative group">
+      <div className="relative group ">
         <div
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
