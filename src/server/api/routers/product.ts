@@ -125,7 +125,7 @@ export const productRouter = createTRPCRouter({
           productId: input.id,
         },
         data: {
-          discountPercentage: input.discountPercentage ?? 0,
+          discountPercentage: input.discountPercentage ?? undefined,
           listPrice: input.listPrice ?? undefined,
         },
       });
