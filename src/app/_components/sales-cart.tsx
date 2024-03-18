@@ -32,7 +32,7 @@ export const SalesCart: React.FC = () => {
 
 
     const handleSaleSubmit = () => {
-        const { netTotal, rawTotal } = calculateTotal()
+        const { rawTotal } = calculateTotal()
         const sale = {
             products: products.map((product) => ({
                 productId: product.product.id,
@@ -126,7 +126,7 @@ export const SalesCart: React.FC = () => {
                     value={discountPercentage === 0 ? '' : discountPercentage}
                     min={0}
                     max={100}
-                    onFocus={(e) => {
+                    onFocus={() => {
                         if (discountPercentage === 0) setDiscountPercentage(0);
                     }}
                     onChange={(e) => {

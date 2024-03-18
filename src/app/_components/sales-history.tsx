@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { api } from '~/trpc/react';
 
 export const SalesHistory: React.FC = () => {
