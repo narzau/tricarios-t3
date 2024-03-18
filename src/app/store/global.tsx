@@ -21,7 +21,7 @@ interface SalesCartStoreActions {
     setShowSalesCart: (show: boolean) => void;
 }
 
-export const useSalesCartStore = create<SalesCartStoreState & SalesCartStoreActions>(
+export const useSalesCartStore = create<SalesCartStoreState & SalesCartStoreActions>()(
     persist(
         (set) => ({
             products: [],
