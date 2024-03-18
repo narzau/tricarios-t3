@@ -130,4 +130,45 @@ export const productRouter = createTRPCRouter({
         },
       });
     }),
+  saleSubmit: protectedProcedure
+    .input(z.object({
+      products: z.array(z.object({
+        productId: z.number(),
+        quantity: z.number(),
+        discountPercentage: z.number().optional().default(0),
+        price: z.number()
+      })),
+      totalSalePrice: z.number(),
+      discountPercentage: z.number().optional(),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      const sale = await ctx.db.sale.create({
+        data: {
+          createdById: ctx.session.user.id,
+          discountPercentage: input.discountPercentage,
+          price: input.totalSalePrice
+        },
+      });
+      for (const product of input.products) {
+        await ctx.db.soldProduct.create({
+          data: {
+            saleId: sale.id,
+            productId: product.productId,
+            quantity: product.quantity,
+            discountPercentage: product.discountPercentage,
+            price: product.price,
+          },
+        });
+        await ctx.db.stockedProduct.update({
+          where: {
+            productId: product.productId,
+          },
+          data: {
+            stock: {
+              decrement: product.quantity,
+            },
+          },
+        });
+      }
+    }),
 });

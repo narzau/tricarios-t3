@@ -23,7 +23,9 @@ model BaseProduct {
     model String?
     stockedProducts StockedProduct[]
     boughtProducts BoughtProduct[]
-    
+    soldProducts SoldProduct[]
+
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     
@@ -63,7 +65,37 @@ model StockedProduct {
     @@unique([productId])
 }
 
-// Necessary for Next auth
+model Sale {
+    id        Int      @id @default(autoincrement())
+    price     Float
+    discountPercentage  Float @default(0)
+
+    soldProducts SoldProduct[]
+
+    createdBy   User   @relation(fields: [createdById], references: [id])
+    createdById String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+}
+
+model SoldProduct {
+    id        Int      @id @default(autoincrement())
+    quantity  Int
+    price     Float
+    discountPercentage   Float
+
+    sale   Sale @relation(fields: [saleId], references: [id])
+    saleId   Int
+
+    product   BaseProduct @relation(fields: [productId], references: [id])
+    productId Int
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
 model Account {
     id                String  @id @default(cuid())
     userId            String
@@ -100,6 +132,7 @@ model User {
     sessions      Session[]
     basedProducts           BaseProduct[]
     boughtProducts          BoughtProduct[]
+    sales                   Sale[]
 }
 
 model VerificationToken {

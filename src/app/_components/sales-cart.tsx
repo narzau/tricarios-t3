@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { type StoreProduct, useSalesCartStore } from "../store/global";
+import { api } from '~/trpc/react';
+import { useRouter } from 'next/navigation';
 
 export const SalesCart: React.FC = () => {
+    const router = useRouter();
     const [discountPercentage, setDiscountPercentage] = useState(0);
     const products = useSalesCartStore((state) => state.products);
     const addQuantity = useSalesCartStore((state) => state.addQuantityToProduct)
@@ -15,9 +18,34 @@ export const SalesCart: React.FC = () => {
           return acc + discountedPrice * product.quantity;
       }, 0);
       const discountAmount = total * (discountPercentage / 100);
-      total -= discountAmount;
-      return total;
+     ;
+      return {
+        rawTotal: total,
+        netTotal: total -= discountAmount
+      };
     };
+    const saleSubmit = api.product.saleSubmit.useMutation({
+        onSuccess: () => {
+          router.refresh();
+        },
+      });
+
+
+    const handleSaleSubmit = () => {
+        const { netTotal, rawTotal } = calculateTotal()
+        const sale = {
+            products: products.map((product) => ({
+                productId: product.product.id,
+                quantity: product.quantity,
+                discountPercentage: product.discountPercentage,
+                price: product.listPrice
+            })),
+            discountPercentage,
+            totalSalePrice: rawTotal,
+        };
+        saleSubmit.mutate(sale);
+        emptyCart();
+    }
 
     return (
         <div className="overflow-y-scroll border border-gray-200 rounded-lg shadow-lg h-screen max-h-screen overflox-x-hidden">
@@ -108,13 +136,13 @@ export const SalesCart: React.FC = () => {
                 />
                 </div>
                 <div className='font-bold'>
-                    Total: ${calculateTotal()}
+                    Total: ${calculateTotal().netTotal}
                 </div>
                 <div>
                     <button className="px-4 py-2 bg-red-500/80 text-white rounded-md" onClick={emptyCart}>
                         Vaciar caja
                     </button>
-                    <button className="ml-2 px-4 py-2 bg-green-500/80 text-white rounded-md">
+                    <button className="ml-2 px-4 py-2 bg-green-500/80 text-white rounded-md" onClick={handleSaleSubmit}>
                         Finalizar venta
                     </button>
                 </div>
