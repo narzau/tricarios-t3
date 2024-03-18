@@ -72,7 +72,7 @@ export const productRouter = createTRPCRouter({
       skip: z.number().default(0), 
       take: z.number().default(10),
       nameFilter: z.string().optional(),
-    }).optional())
+    }))
     .query(async ({ ctx, input }) => {
       return await ctx.db.baseProduct.findMany({
         skip: input?.skip,
@@ -97,7 +97,7 @@ export const productRouter = createTRPCRouter({
       skip: z.number().default(0), 
       take: z.number().default(10),
       nameFilter: z.string().optional(),
-    }).optional())
+    }))
     .query(async ({ ctx, input }) => {
       return await ctx.db.stockedProduct.findMany({
         skip: input?.skip,
@@ -170,5 +170,24 @@ export const productRouter = createTRPCRouter({
           },
         });
       }
+    }),
+  querySales: protectedProcedure
+    .input(z.object({ 
+      skip: z.number().default(0), 
+      take: z.number().default(20),
+    }))
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.sale.findMany({
+        skip: input.skip,
+        take: input.take,
+        include: { soldProducts: {
+          include: {
+            product: true
+          }
+        } },
+        orderBy: {
+          createdAt: "desc"
+        }
+      });
     }),
 });

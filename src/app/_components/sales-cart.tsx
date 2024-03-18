@@ -73,7 +73,7 @@ export const SalesCart: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 text-lg">
-                    {products.map((product) => (
+                    {products.length ? products.map((product) => (
                         <tr key={product.id}>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className=" text-gray-900">{product.product.id}</div>
@@ -106,7 +106,13 @@ export const SalesCart: React.FC = () => {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : 
+                    <tr>
+                        <td className="px-6 py-4 whitespace-nowrap" colSpan={6}>
+                            <div className="text-gray-900 text-center">No hay productos en la caja</div>
+                        </td>
+                    </tr>
+                    }
                 </tbody>
             </table>
             <div className={`p-4 ${products.length ? 'flex' : 'hidden'} flex-col items-center justify-center w-full gap-4`}>
