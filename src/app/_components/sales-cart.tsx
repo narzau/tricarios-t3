@@ -107,10 +107,10 @@ export const SalesCart: React.FC = () => {
                     Total: ${calculateTotal()}
                 </div>
                 <div>
-                    <button className="px-4 py-2 bg-red-500 text-white rounded-md" onClick={emptyCart}>
+                    <button className="px-4 py-2 bg-red-500/80 text-white rounded-md" onClick={emptyCart}>
                         Vaciar caja
                     </button>
-                    <button className="ml-2 px-4 py-2 bg-green-500 text-white rounded-md">
+                    <button className="ml-2 px-4 py-2 bg-green-500/80 text-white rounded-md">
                         Finalizar venta
                     </button>
                 </div>
