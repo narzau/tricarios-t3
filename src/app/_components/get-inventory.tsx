@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { api } from "~/trpc/react";
 import { type StoreProduct, useSalesCartStore } from "../store/global";
-import { getServerAuthSession } from "~/server/auth";
 
 export const GetInventory: React.FC = () => {
 
@@ -14,6 +13,7 @@ export const GetInventory: React.FC = () => {
     const [editedPrice, setEditedPrice] = useState<number | null>(null); // State to track changes to edited price
     const router = useRouter();
     const addProductToCart = useSalesCartStore((state) => state.addProduct)
+    const removeProductFromCartById = useSalesCartStore((state) => state.removeProductById)
     const productsInCart = useSalesCartStore((state) => state.products);
 
     const isInCart = (productId: number, stock: number) => {
@@ -44,6 +44,12 @@ export const GetInventory: React.FC = () => {
       },
     });
 
+    const deleteStockedProduct = api.product.deleteStockedProduct.useMutation({
+      onSuccess: async () => {
+        await result.refetch();
+      },
+    });
+
     // Function to handle editing of the list price
     const handleEditPrice = (index: number, price: number) => {
       setEditablePrice(index);
@@ -60,7 +66,11 @@ export const GetInventory: React.FC = () => {
     const handlePageChange = (page: number) => {
       setCurrentPage(page);
     };
-
+    
+    const handleDeleteStockedProduct = (productId: number) => {
+       deleteStockedProduct.mutateAsync({ id: productId });
+       removeProductFromCartById(productId)
+    }
     return (
       <div className="overflow-x-hiden border border-gray-200 rounded-lg h-screen shadow-lg ">
         <input
@@ -196,25 +206,32 @@ export const GetInventory: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                  <div className="flex items-center justify-center">
-                    {isInCart(product.product.id, product.stock) ? (
-                        <span className="text-gray-500">En la caja</span>
-                    ) : product.stock > 0 ? (
-<button
-    onClick={() => {
-        addProductToCart(product as StoreProduct);
-    }}
-    className={`bg-green-500 text-white px-4 py-2 rounded-md ${
-        productsInCart.map(product => product.productId).includes(product.product.id) ? 'opacity-50 cursor-not-allowed' : ''
-    }`}
-    disabled={productsInCart.map(product => product.productId).includes(product.productId)}
->
-    {productsInCart.map(product => product.productId).includes(product.productId) ? 'Agregado' : 'Agregar a caja'}
-</button>
-                    ) : (
+                  <div className="flex items-center justify-between gap-4 w-48">
+                    <div className="flex items-center justify-center   z-20 ">
+                      {isInCart(product.product.id, product.stock) ? (
+                          <span className="text-gray-500">En la caja</span>
+                      ) : product.stock > 0 ? (
+                        <button
+                            onClick={() => {
+                                addProductToCart(product as StoreProduct);
+                            }}
+                            className={`bg-green-500 text-white px-4 py-2 rounded-md ${
+                                productsInCart.map(product => product.productId).includes(product.product.id) ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                            disabled={productsInCart.map(product => product.productId).includes(product.productId)}
+                        >
+                            {productsInCart.map(product => product.productId).includes(product.productId) ? 'Agregado' : 'Agregar a caja'}
+                        </button>
+                      ) : (
                         <span className="text-gray-500">Sin stock</span>
-                    )}
-                </div>
+                      )}
+                    </div>
+                    <div className="text-2xl text-red-500/80 flex items-center justify-center w-10 self-center ">
+                      <p className="px-2 cursor-pointer" onClick={ () => handleDeleteStockedProduct(product.id)}>
+                        X
+                      </p>
+                    </div>
+                  </div>
                 
                             </td>
                 </tr>
