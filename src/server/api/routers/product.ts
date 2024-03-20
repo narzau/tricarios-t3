@@ -92,14 +92,25 @@ export const productRouter = createTRPCRouter({
         where: { id: input.id },
       });
     }),
-  getPaginatedInventory: protectedProcedure
+    getPaginatedInventory: protectedProcedure
     .input(z.object({ 
       skip: z.number().default(0), 
       take: z.number().default(10),
       nameFilter: z.string().optional(),
     }))
     .query(async ({ ctx, input }) => {
-      return await ctx.db.stockedProduct.findMany({
+      const totalCount = await ctx.db.stockedProduct.count({
+        where: {
+          product: {
+            displayName: {
+              contains: input?.nameFilter,
+              mode: "insensitive",
+            },
+          },
+        },
+      });
+  
+      const items = await ctx.db.stockedProduct.findMany({
         skip: input?.skip,
         take: input?.take,
         where: {
@@ -112,6 +123,8 @@ export const productRouter = createTRPCRouter({
         },
         include: { product: true },
       });
+  
+      return { totalCount, items };
     }),
   updateStockedProduct: protectedProcedure
     .input(z.object({

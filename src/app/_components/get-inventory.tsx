@@ -20,12 +20,19 @@ export const GetInventory: React.FC = () => {
       const productInCart = productsInCart.find((product) => product.product.id === productId);
       return productInCart && productInCart.quantity === stock;
   };
-
-    const result = api.product.getPaginatedInventory.useQuery({nameFilter: searchTerm}, {
-      enabled: !!searchTerm || true,
-    });
-
-    const { data } = result
+    const PAGE_SIZE = 10;
+    const [currentPage, setCurrentPage] = useState(1);
+    
+    const result = api.product.getPaginatedInventory.useQuery(
+      { nameFilter: searchTerm, skip: (currentPage - 1) * PAGE_SIZE, take: PAGE_SIZE },
+      {
+        enabled: !!searchTerm || true,
+      }
+      );
+      
+      const { data } = result
+      
+      const totalPages = data ? Math.ceil(data.totalCount / PAGE_SIZE) : 0;
     const updateStockedProduct = api.product.updateStockedProduct.useMutation({
       onSuccess: async () => {
         setEditedPrice(null);
@@ -50,10 +57,12 @@ export const GetInventory: React.FC = () => {
       }
     };
 
-
+    const handlePageChange = (page: number) => {
+      setCurrentPage(page);
+    };
 
     return (
-      <div className="overflow-x-hiden border border-gray-200 rounded-lg h-screen shadow-lg">
+      <div className="overflow-x-hiden border border-gray-200 rounded-lg h-screen shadow-lg ">
         <input
              onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -64,7 +73,7 @@ export const GetInventory: React.FC = () => {
             placeholder="Search items"
             autoComplete="off"
           />
-        <table className="min-w-full divide-y divide-gray-200 text-center">
+        <table className="min-w-full divide-y divide-gray-200 text-center ">
           <thead className="bg-gray-50 text-md">
             <tr>
               <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
@@ -94,7 +103,7 @@ export const GetInventory: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 text-md ">
-            {data ? data.map((product, index) => (
+            {data ? data.items.map((product, index) => (
               <React.Fragment key={index}>
                 <tr className="">
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
@@ -206,12 +215,33 @@ export const GetInventory: React.FC = () => {
                         <span className="text-gray-500">Sin stock</span>
                     )}
                 </div>
+                
                             </td>
                 </tr>
               </React.Fragment>
             )) : undefined}
+            
           </tbody>
+          
         </table>
+        <div className="mt-4  z-30  fixed bottom-2 self-center left-1/2 ">
+          <div className="flex w-full self-center justify-center items-center">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                className={`px-3 py-1 mx-1 rounded-md ${
+                  currentPage === index + 1
+                    ? "bg-green-500/80 text-gray-700"
+                    : "bg-gray-300 text-gray-700"
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+          
+        </div>
       </div>
     );
 };
