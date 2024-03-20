@@ -11,7 +11,9 @@ export function CreateProduct() {
   const [model, setModel] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
-  const [price, setPrice] = useState<number>(0);
+  const [listPrice, setListPrice] = useState<number>(0);
+  const [discountPercentage, setDiscountPercentage] = useState<number>(0);
+  const [buyingPrice, setBuyingPrice] = useState<number>(0);
   const [productId, setProductId] = useState<number | undefined>(undefined);
   const [isSelected, setIsSelected] = useState<boolean>(false); // State for checkbox
   const [selectedValue, setSelectedValue] = useState<BaseProduct | null>(null);
@@ -32,8 +34,11 @@ export function CreateProduct() {
       setDisplayName("");
       setBrand("");
       setModel("");
+      setProductId(undefined);
       setCode("");
-      setPrice(0);
+      setBuyingPrice(0);
+      setDiscountPercentage(0);
+      setListPrice(0);
       setQuantity(1);
     }
   };
@@ -44,10 +49,13 @@ export function CreateProduct() {
       setDisplayName("");
       setBrand("");
       setModel( "");
+      setSelectedValue(null);
       setCode("");
       setProductId(undefined);
       setIsSelected(false);
-      setPrice(0);
+      setListPrice(0);
+      setDiscountPercentage(0);
+      setBuyingPrice(0);
       setQuantity(1);
     },
   });
@@ -72,7 +80,7 @@ export function CreateProduct() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          createProduct.mutate({ displayName, brand, model, code, quantity, price, productId });
+          createProduct.mutate({ displayName, brand, model, code, quantity, listPrice, buyingPrice, discountPercentage, productId });
         }}
         className="flex flex-col gap-2  text-gray-700 px-36 rounded-lg self-center shadow-2xl"
       >
@@ -81,7 +89,9 @@ export function CreateProduct() {
         <InputField label="Modelo" value={model} onChange={(e) => setModel(e.target.value)} disabled={isSelected} />
         <InputField label="Codigo" value={code} onChange={(e) => setCode(e.target.value)} disabled={isSelected} />
         <InputField label="Cantidad" value={quantity} onChange={(e) => setQuantity(Number(e.target.value) || 0)} />
-        <InputField label="Precio" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+        <InputField prefix="$" label="Precio de compra" value={buyingPrice} onChange={(e) => setBuyingPrice(Number(e.target.value))} />
+        <InputField prefix="$" label="Precio de lista" value={listPrice} onChange={(e) => setListPrice(Number(e.target.value))} />
+        <InputField prefix="%" label="Aplicar descuento" value={discountPercentage} onChange={(e) => setDiscountPercentage(Number(e.target.value))} />
         <button
           type="submit"
           className="rounded-md bg-gray-300/80  py-3 font-semibold uppercase tracking-wide transition hover:bg-gray-500/80 my-10 w-36 text-center content-center self-center"
@@ -98,19 +108,25 @@ interface InputFieldProps {
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  prefix?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ label, value, onChange, disabled = false }) => {
+const InputField: React.FC<InputFieldProps> = ({ prefix, label, value, onChange, disabled = false }) => {
   return (
-    <div className="flex center content-center items-center py-4 flex-col">
+    <div className="flex center content-center items-center py-2 flex-col">
       <div className="uppercase tracking-normal">{label}</div>
-      <input
-        type="text"
-        value={value}
-        onChange={onChange}
-        className={`rounded-md shadow-lg border-2 border-gray-100  bg-white/10 p-3 ${disabled ? "bg-white/5 text-gray-400" : ""}`}
-        disabled={disabled}
-      />
+      <div className='flex items-center justify-center gap-2'>
+        <p className='text-xl font-bold'>{prefix}</p>
+        <input
+          prefix={prefix}
+          type="text"
+          value={value}
+          onChange={onChange}
+          className={`rounded-md shadow-lg border-2 border-gray-100  bg-white/10 p-2 ${disabled ? "bg-white/5 text-gray-400" : ""}`}
+          disabled={disabled}
+        />
+      </div>
+      
     </div>
   );
 };

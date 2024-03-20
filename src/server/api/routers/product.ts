@@ -22,7 +22,9 @@ export const productRouter = createTRPCRouter({
       model: z.string().optional(),
       code: z.string().optional(),
       quantity: z.number(),
-      price: z.number().optional(),
+      listPrice: z.number(),
+      buyingPrice: z.number().optional(),
+      discountPercentage: z.number().optional().default(0),
     }))
     .mutation(async ({ ctx, input }) => {
       let product;
@@ -46,7 +48,7 @@ export const productRouter = createTRPCRouter({
         data: {
           productId: product.id,
           quantity: input.quantity,
-          price: input.price,
+          price: input.buyingPrice,
           createdById: ctx.session.user.id,
         },
       });
@@ -54,8 +56,8 @@ export const productRouter = createTRPCRouter({
         create: {
           productId: product.id,
           stock: input.quantity,
-          discountPercentage: 0,
-          listPrice: 0
+          discountPercentage: input.discountPercentage,
+          listPrice: input.listPrice
         },
         update: {
           stock: {
