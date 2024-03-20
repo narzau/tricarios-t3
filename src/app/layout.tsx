@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "~/app/providers/providers";
 import { getServerAuthSession } from "~/server/auth";
+import { db } from "~/server/db";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -22,7 +23,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const serverSession = await getServerAuthSession();
-
+  
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>

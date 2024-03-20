@@ -112,14 +112,17 @@ export default function Dashboard() {
             </ListItemPrefix>
             Ventas
           </ListItem>
-          <ListItem className={` p-2 text-sm w-42 text-red-500/80 items-center justify-center self-center fixed bottom-4 gap-3`} onClick={handleLogout} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-            <ListItemPrefix placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-              <PresentationChartBarIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Cerrar sesion
-          </ListItem>
+         
         </List>
+        <div onClick={handleLogout} className={` cursor-pointer p-2  text-sm w-42 text-red-500/80 items-center justify-center self-center fixed bottom-4 gap-3`} >
+            <ListItemPrefix className="flex gap-2" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+              <PresentationChartBarIcon className="h-5 w-5" />
+            Cerrar sesion
+
+            </ListItemPrefix>
+        </div>
       </Card>
+      
       <div className="flex flex-col h-screen w-full overflow-x-hidden overflow-y-scroll">{renderComponent()}</div>
       </div> : null}
     </div>
