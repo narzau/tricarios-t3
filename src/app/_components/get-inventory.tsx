@@ -50,7 +50,6 @@ export const GetInventory: React.FC = () => {
       },
     });
 
-    // Function to handle editing of the list price
     const handleEditPrice = (index: number, price: number) => {
       setEditablePrice(index);
       setEditedPrice(price);
@@ -67,8 +66,8 @@ export const GetInventory: React.FC = () => {
       setCurrentPage(page);
     };
     
-    const handleDeleteStockedProduct = (productId: number) => {
-       deleteStockedProduct.mutateAsync({ id: productId });
+    const handleDeleteStockedProduct = async (productId: number) => {
+       deleteStockedProduct.mutate({ id: productId });
        removeProductFromCartById(productId)
     }
     return (
