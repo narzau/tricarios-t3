@@ -80,7 +80,7 @@ export default function Dashboard() {
   }
   return (
     <div className="flex max-h-screen overflow-hidden">
-{      status == 'authenticated' ? <div className="flex">
+{      status == 'authenticated' ? <div className="flex max-h-screen overflow-hidden w-full">
       <Card className="sticky left-0 h-screen w-40 p-0 shadow-xl shadow-blue-gray-900/5 text-md"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
         <div className="mb-2 p-4">
           <Typography variant="h5" color="blue-gray" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
@@ -120,7 +120,7 @@ export default function Dashboard() {
           </ListItem>
         </List>
       </Card>
-      <div className="flex flex-col h-screen w-full">{renderComponent()}</div>
+      <div className="flex flex-col h-screen w-full overflow-x-hidden overflow-y-scroll">{renderComponent()}</div>
       </div> : null}
     </div>
   );
