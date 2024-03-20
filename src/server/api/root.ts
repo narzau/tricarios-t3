@@ -1,4 +1,5 @@
 import { productRouter } from "~/server/api/routers/product";
+import { userRouter } from "~/server/api/routers/user";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -8,16 +9,9 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   product: productRouter,
+  user: userRouter,
 });
 
-// export type definition of API
 export type AppRouter = typeof appRouter;
 
-/**
- * Create a server-side caller for the tRPC API.
- * @example
- * const trpc = createCaller(createContext);
- * const res = await trpc.product.all();
- *       ^? Product[]
- */
 export const createCaller = createCallerFactory(appRouter);
