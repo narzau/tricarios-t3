@@ -81,38 +81,38 @@ export default function Dashboard() {
   return (
     <div className="flex max-h-screen overflow-hidden">
 {      status == 'authenticated' ? <div className="flex max-h-screen overflow-hidden w-full">
-      <Card className="sticky h-screen w-40 shadow-xl shadow-blue-gray-900/5 text-md"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+      <Card className="sticky left-0 h-screen w-42 shadow-xl shadow-blue-gray-900/5 text-xl "  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
         <div className="mb-2 p-4">
           <Typography variant="h5" color="blue-gray" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             Tricarios Growshop
           </Typography>
         </div>
-        <List className="p-0" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-          <ListItem className={`gap-3 ${selectedOption === "inventory" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("inventory")}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <List className="gap-2 " placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <ListItem className={`gap-3 p-2 ${selectedOption === "inventory" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("inventory")}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             <ListItemPrefix placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
             Inventario
           </ListItem>
-          <ListItem className={`gap-3 ${selectedOption === "sales_cart" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("sales_cart")}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <ListItem className={`gap-3  p-2 ${selectedOption === "sales_cart" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("sales_cart")}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             <ListItemPrefix placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
             Caja
           </ListItem>
-          <ListItem className={`gap-3 ${selectedOption === "add_product" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("add_product")}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <ListItem className={`gap-3  p-2 ${selectedOption === "add_product" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("add_product")}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             <ListItemPrefix placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
             Cargar
           </ListItem>
-          <ListItem className={`gap-3 ${selectedOption === "sales_history" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("sales_history")} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <ListItem className={`gap-3  p-2 ${selectedOption === "sales_history" ? "bg-blue-100" : ""}`} onClick={() => handleSelectOption("sales_history")} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             <ListItemPrefix placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
             Ventas
           </ListItem>
-          <ListItem className={`text-sm w-42 text-red-500/80 items-center justify-center self-center fixed bottom-4 gap-3`} onClick={handleLogout} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <ListItem className={` p-2 text-sm w-42 text-red-500/80 items-center justify-center self-center fixed bottom-4 gap-3`} onClick={handleLogout} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             <ListItemPrefix placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
