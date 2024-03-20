@@ -3,8 +3,10 @@ import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { api } from "~/trpc/react";
 import { type StoreProduct, useSalesCartStore } from "../store/global";
+import { getServerAuthSession } from "~/server/auth";
 
 export const GetInventory: React.FC = () => {
+
     const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
     const [editablePrice, setEditablePrice] = useState<number | null>(null); // State to track editable price
     const [editableDiscount, setEditableDiscount] = useState<number | null>(null); // State to track editable price

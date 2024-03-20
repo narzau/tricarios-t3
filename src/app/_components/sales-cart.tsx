@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { type StoreProduct, useSalesCartStore } from "../store/global";
 import { api } from '~/trpc/react';
