@@ -1,17 +1,12 @@
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { z } from "zod";
+
 
 import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-
-type FilterConditions = {
-  displayName?: { contains: string; mode: "insensitive" };
-  brand?: { contains: string; mode: "insensitive" };
-  code?: { contains: string; mode: "insensitive" };
-};
 
 export const productRouter = createTRPCRouter({
   hello: publicProcedure
