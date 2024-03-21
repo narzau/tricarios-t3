@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 import {
@@ -5,6 +6,12 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+
+type FilterConditions = {
+  displayName?: { contains: string; mode: "insensitive" };
+  brand?: { contains: string; mode: "insensitive" };
+  code?: { contains: string; mode: "insensitive" };
+};
 
 export const productRouter = createTRPCRouter({
   hello: publicProcedure
@@ -76,15 +83,26 @@ export const productRouter = createTRPCRouter({
       nameFilter: z.string().optional(),
     }))
     .query(async ({ ctx, input }) => {
+      const whereConditions: Prisma.BaseProductWhereInput = {
+        OR: [
+          {displayName: {
+            contains: input?.nameFilter ?? "",
+            mode: "insensitive",
+          }},
+          {code: {
+            contains: input?.nameFilter ?? "",
+            mode: "insensitive",
+          }},
+          {brand: {
+            contains: input?.nameFilter ?? "",
+            mode: "insensitive",
+          }},
+  ]
+      };
       return await ctx.db.baseProduct.findMany({
         skip: input?.skip,
         take: input?.take,
-        where: {
-          displayName: {
-            contains: input?.nameFilter,
-            mode: "insensitive",
-          },
-        },
+        where: whereConditions
       });
     }),
   getBaseProductById: protectedProcedure
