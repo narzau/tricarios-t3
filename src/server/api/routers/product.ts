@@ -172,6 +172,7 @@ export const productRouter = createTRPCRouter({
       id: z.number(),
       discountPercentage: z.number().optional(),
       listPrice: z.number().optional(),
+      stock: z.number().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       await ctx.db.stockedProduct.update({
@@ -181,6 +182,7 @@ export const productRouter = createTRPCRouter({
         data: {
           discountPercentage: input.discountPercentage ?? undefined,
           listPrice: input.listPrice ?? undefined,
+          stock: input.stock ?? undefined,
         },
       });
     }),
