@@ -86,16 +86,13 @@ export const GetInventory: React.FC = () => {
           <thead className="bg-gray-50 text-md">
             <tr>
               <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
-                ID
+                Categoria
+              </th>
+              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
+                Codigo
               </th>
               <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Nombre de producto
-              </th>
-              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
-                Marca
-              </th>
-              <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
-                Modelo
               </th>
               <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Precio de lista
@@ -116,16 +113,13 @@ export const GetInventory: React.FC = () => {
               <React.Fragment key={index}>
                 <tr className="">
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                    {product.product.id}
+                    {product.product.category?.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
+                    {product.product.code}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     {product.product.displayName}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                    {product.product.brand}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                    {product.product.model}
                   </td>
                   <td onClick={() => handleEditPrice(index, product.listPrice)} className="cursor-pointer px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                     <div className="flex items-center justify-center"> 

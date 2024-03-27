@@ -123,7 +123,11 @@ export const productRouter = createTRPCRouter({
             },
           },
         },
-        include: { product: true },
+        include: { product: {
+          include: {
+            category: true
+          }
+        } },
       });
   
       return { totalCount, items };

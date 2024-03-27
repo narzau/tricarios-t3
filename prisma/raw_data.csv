@@ -1,0 +1,486 @@
+CODIGO,ARTICULO / CATEGORIA,PRECIO,MAYORISTA
+CAT,ACEITE Y CREMA,,
+AC001,Aceite t2 10ml,"$9.000,00",
+AC002,Aceite t3 10ml,"$10.400,00",
+AC003,Aceite combinado 10ml,"$15.180,00",
+AC004,Crema biorelajante,"$7.000,00",
+AC005,Crema masajes 100ml,"$7.000,00",
+AC006,Crema corporal 50ml,"$5.000,00",
+AC007,Crema corporal 100ml,"$7.000,00",
+AC008,Crema rostro 30ml,"$5.000,00",
+CAT,ARMADORES,,
+AR001,LRC 78mm,"$5.400,00","$4.320,00"
+AR002,LRC 110mm,"$7.000,00","$5.600,00"
+AR003,OCB acrilico,"$8.800,00","$7.040,00"
+AR004,OCB metal,"$10.000,00","$8.000,00"
+AR005,Raw hemp 70mm,"$5.000,00","$4.000,00"
+AR006,Raw Hemp 79mm,"$6.000,00","$4.800,00"
+AR007,Raw Hemp 110mm,"$7.200,00","$5.760,00"
+AR008,Stamps 78mm metal,"$5.000,00","$4.000,00"
+AR009,Smoking 78mm adjustable,"$5.600,00","$4.480,00"
+AR010,Smoking 78mm,"$9.775,00","$7.820,00"
+AR011,Smoking 78mm tubo,"$6.210,00","$4.968,00"
+AR012,Tonking 78mm,"$4.000,00","$3.200,00"
+AR013,Tuquero 420 Cono S,"$1.380,00","$1.104,00"
+AR014,Tuquero 420 Cono M,"$1.840,00","$1.472,00"
+AR015,Tuquero 420 Cono L,"$2.070,00","$1.656,00"
+AR016,Zeus,"$4.000,00","$3.200,00"
+CAT,BANDEJAS,,
+BA001,Bulldog chico,"$3.105,00","$2.484,00"
+BA002,Bulldog mediana,"$6.900,00","$5.520,00"
+BA003,Honeypuff con corter para armar,"$6.000,00","$4.800,00"
+BA004,Raw chico,"$5.750,00","$4.600,00"
+BA005,Raw mediano mujer,"$8.050,00","$6.440,00"
+BA006,Raw grande,"$9.315,00","$7.452,00"
+BA007,Raw 28x18 Silver,"$15.000,00","$12.000,00"
+BA008,LRC 18x14 Silver Edition,"$12.500,00","$10.000,00"
+BA009,LRC chico,"$5.750,00","$4.600,00"
+BA010,LRC Duki amarillo,"$5.750,00","$4.600,00"
+BA011,LRC vidrio o cuarzo,"$14.260,00","$11.408,00"
+BA012,3rayos chico,"$0,00","$0,00"
+BA013,3rayos 28x18,"$5.400,00","$4.320,00"
+BA014,Tuqueros 420,"$3.220,00","$2.576,00"
+BA015,Smoking,"$8.510,00","$6.808,00"
+BA016,Squadafum space,"$6.900,00","$5.520,00"
+BA017,Zeus Cañamo,"$6.000,00","$4.800,00"
+BA018,Zeus con tapa hojas,"$8.050,00","$6.440,00"
+CAT,BLUNT,,
+BL001,Cono Raw chico,"$4.000,00","$3.200,00"
+BL002,Cono Raw mediano,"$5.000,00","$4.000,00"
+BL003,Cono Raw grande,"$14.000,00","$11.200,00"
+BL004,Cono Oro LRC xU,"$5.000,00","$4.000,00"
+BL005,LRC,"$3.000,00","$2.400,00"
+BL006,Wrap x2,"$2.000,00","$1.600,00"
+BL007,Wrap x4,"$0,00","$0,00"
+CAT,BONG,,
+BO001,Dk vidrio 12cm,"$11.400,00","$9.120,00"
+BO002,Dk vidrio colores 12cm,"$15.000,00","$12.000,00"
+BO003,Dk recto mediano vidrio 20cm,"$21.600,00","$17.280,00"
+BO004,Dk mediano vidrio 20cm,"$21.600,00","$17.280,00"
+BO005,Mini colores acrílico 15cm,"$12.600,00","$10.080,00"
+BO006,Mini KIF plus 4,"$52.800,00","$42.240,00"
+BO007,Pyrex Vidrio mini verde ,"$17.000,00","$13.600,00"
+BO008,Pyrex Vidrio 15cm SKGB1122,"$49.000,00","$39.200,00"
+BO009,Squadafum mediano,"$0,00","$0,00"
+BO010,Tornasolado 25cm,"$22.560,00","$18.048,00"
+CAT,CARTAS,,
+CA001,Canuto,"$0,00","$0,00"
+CA002,Fumanyi,"$0,00","$0,00"
+CA003,Mazo argentino,"$0,00","$0,00"
+CA004,Mazo nudes,"$3.968,00","$3.174,40"
+CAT,CENICEROS,,
+CE001,Cenicero para auto,"$8.300,00","$6.640,00"
+CE002,Bulldog metal,"$17.900,00","$14.320,00"
+CE003,Frisbee raw cono holder,"$19.000,00","$15.200,00"
+CE004,Gizeh,"$5.500,00","$4.400,00"
+CE005,LRC,"$3.400,00","$2.720,00"
+CE006,Raw,,"$0,00"
+CE007,Stamps,"$3.000,00","$2.400,00"
+CE008,Squadafum silicona,"$4.000,00","$3.200,00"
+CE009,3rayos,"$3.000,00","$2.400,00"
+CAT,ENCENDEDORES,,
+EN001,Clipper,"$2.000,00","$1.600,00"
+EN002,Djeep,"$5.000,00","$4.000,00"
+EN003,Eléctrico 3 rayos lucky mix,"$25.000,00","$20.000,00"
+EN004,Eléctrico 3 rayos fun mix,"$20.000,00","$16.000,00"
+EN005,Eléctrico 3rayos mochila,"$25.000,00","$20.000,00"
+EN006,Magiclick vip,"$4.000,00","$3.200,00"
+EN007,Magiclick vip turbo goma neon,"$4.000,00","$3.200,00"
+EN008,Metal pistola,"$17.000,00","$13.600,00"
+EN009,Raythor llavero,,"$0,00"
+EN010,Soplete candela,"$5.600,00","$4.480,00"
+EN011,Zengaz dibujos,"$14.000,00","$11.200,00"
+EN012,Zengaz liso,"$14.000,00","$11.200,00"
+EN013,Zengaz tambor,"$14.000,00","$11.200,00"
+EN014,Zeus electrico,"$14.000,00","$11.200,00"
+CAT,FERTILIZANTES ,,
+FE0001,Advanced nutrients combo,"$65.000,00","$52.000,00"
+FE0002,Advanced nutrients bud Candy,"$31.200,00","$24.960,00"
+FE0003,Advanced nutrients rhino,"$29.000,00","$23.200,00"
+FE0004,Advanced nutrients Overdrive,"$43.600,00","$34.880,00"
+FE0005,Advanced nutrients Big Bud,"$29.000,00","$23.200,00"
+FE0006,Advanced nutrients Flawless,"$21.000,00","$16.800,00"
+FE0007,Advanced Sensi Cal Mag Xtra,"$27.000,00","$21.600,00"
+FE0008,Auxym antistress 40cc,"$13.400,00","$10.720,00"
+FE0009,Bioproyect jabon potasico 100ml,"$3.400,00","$2.720,00"
+FE0010,Bioproyect hidro 1 1L,"$17.200,00","$13.760,00"
+FE0011,Bioproyect hidro 2 1L,"$17.200,00","$13.760,00"
+FE0012,Bioproyect hidro 3 1L,"$17.200,00","$13.760,00"
+FE0013,Bioproyect hidro plus PK 4 1L,"$14.700,00","$11.760,00"
+FE0014,Bioproyect trichodermas 60ml,,"$0,00"
+FE0015,Bioproyect trichodermas 250ml,"$17.000,00","$13.600,00"
+FE0016,Bioproyect guano 250g,"$7.000,00","$5.600,00"
+FE0017,Bioproyect Lana de roca,"$3.500,00","$2.800,00"
+FE0018,Beee hello weed,"$3.600,00","$2.880,00"
+FE0019,Cytozyme bionutrientre 50cc,"$10.000,00","$8.000,00"
+FE0020,Cytozyme crop+ 50cc,"$11.000,00","$8.800,00"
+FE0021,Feeding grow 125g,,"$0,00"
+FE0022,Feeding short flowering 125g,,"$0,00"
+FE0023,Feeding biogrow 125g,"$45.000,00","$36.000,00"
+FE0024,Feeding bioenhancer 125g,"$79.000,00","$63.200,00"
+FE0025,Feeding booster 125g,"$46.000,00","$36.800,00"
+FE0026,Feeding Calcium 500g,,"$0,00"
+FE0027,Feeding hybrids 125g,,"$0,00"
+FE0028,Feeding biobloom 125g,"$48.000,00","$38.400,00"
+FE0029,Feeding long flowering 125g,"$30.000,00","$24.000,00"
+FE0030,Feeding biobloom 50g,"$48.000,00","$38.400,00"
+FE0031,Feeding grow 50g,"$15.000,00","$12.000,00"
+FE0032,Feeding short flowering 50g,"$15.000,00","$12.000,00"
+FE0033,Feeding hybrids 50g,"$15.000,00","$12.000,00"
+FE0034,feeding PK booster 50g,"$25.500,00","$20.400,00"
+FE0035,Geltek 12g,"$4.500,00","$3.600,00"
+FE0036,Green leaf 6 en 1 250ml,,"$0,00"
+FE0037,Green leaf 6 en 1 500ml,,"$0,00"
+FE0038,Green leaf Purin de ortiga 100ml,"$3.200,00","$2.560,00"
+FE0039,Green leaf araña roja 100ml,"$7.200,00","$5.760,00"
+FE0040,Green leaf repele horm 100ml,"$2.600,00","$2.080,00"
+FE0041,Green leaf harina hueso 100ml,"$2.000,00","$1.600,00"
+FE0042,Green leaf pasta ci 100ml,"$3.100,00","$2.480,00"
+FE0043,Green leaf bokashi ja 200ml,,"$0,00"
+FE0044,Green leaf bokashi ja 1000ml,,"$0,00"
+FE0045,Green Leaf 4 en 1,"$3.400,00","$2.720,00"
+FE0046,Green Leaf Jabon Potasico 500ml,"$6.000,00","$4.800,00"
+FE0047,Green Leaf Cesped,"$5.000,00","$4.000,00"
+FE0048,Green Leaf Micorriza 30cc,"$8.000,00","$6.400,00"
+FE0049,Green Leaf trichodermas 30cc,"$6.200,00","$4.960,00"
+FE0050,Grotek grow 500ml,"$42.000,00","$33.600,00"
+FE0051,Grotek bloom 500ml,"$42.000,00","$33.600,00"
+FE0052,Grotek vitamax pro 500ml,"$48.000,00","$38.400,00"
+FE0053,Grotek heavy bud pro 500ml,"$53.000,00","$42.400,00"
+FE0054,Grotek Bud Fuel 500ml,"$49.000,00","$39.200,00"
+FE0055,Grotek monster grow pro 20g,"$8.500,00","$6.800,00"
+FE0056,Grotek carbon max 100g,"$15.000,00","$12.000,00"
+FE0057,Grotek Micropack,"$75.000,00","$60.000,00"
+FE0058,Harina pescado 100g,"$3.700,00","$2.960,00"
+FE0059,Harina pescado 400g,"$9.100,00","$7.280,00"
+FE0060,JuaniJuana ja potásico 100ml,"$3.000,00","$2.400,00"
+FE0061,Kawsay silicio 500ml,"$11.000,00","$8.800,00"
+FE0062,Kawsay +pH,,"$0,00"
+FE0063,Kawsay -pH,,"$0,00"
+FE0064,Kawsay duo pH,,"$0,00"
+FE0065,Kief melaza de caña 500ml,"$4.500,00","$3.600,00"
+FE0066,Mamboreta foli 30cm,"$13.000,00","$10.400,00"
+FE0067,Mamboreta aba 30cm,"$10.400,00","$8.320,00"
+FE0068,Mamboreta confi 30cm,"$10.400,00","$8.320,00"
+FE0069,Mamboreta H 30cm,"$5.800,00","$4.640,00"
+FE0070,Mamboreta D 30cm,"$6.000,00","$4.800,00"
+FE0071,Mamboreta K 30cm,"$13.000,00","$10.400,00"
+FE0072,Mamboreta Oil 85 E 100ml,"$6.000,00","$4.800,00"
+FE0073,Namaste Amazonia 150g,"$14.000,00","$11.200,00"
+FE0074,Namasté Amazonia 300g,"$25.200,00","$20.160,00"
+FE0075,Namaste oro negro 100cc,"$5.400,00","$4.320,00"
+FE0076,Namasté oro negro 500mls,"$14.500,00","$11.600,00"
+FE0077,Namaste flora 100cc,"$5.400,00","$4.320,00"
+FE0078,Namasté flora 500mls,"$14.500,00","$11.600,00"
+FE0079,Namaste trico+ 100g,"$6.000,00","$4.800,00"
+FE0080,Namasté flora 500mls,"$11.600,00","$9.280,00"
+FE0081,Namaste clonaste 30g,"$11.000,00","$8.800,00"
+FE0082,Namasté PH menos,"$4.300,00","$3.440,00"
+FE0083,Namasté PH menos 500ml,"$14.000,00","$11.200,00"
+FE0084,Namasté bioprotect 100ml,"$8.600,00","$6.880,00"
+FE0085,Namaste Shanti 500mls,"$33.500,00","$26.800,00"
+FE0086,Namasté Shanti 100mls,"$9.600,00","$7.680,00"
+FE0087,Namasté Detox 500mls,"$8.000,00","$6.400,00"
+FE0088,Namasté Bioneem 30ml,"$6.800,00","$5.440,00"
+FE0089,Namasté Bioneem 100ml,"$12.000,00","$9.600,00"
+FE0090,Namasté Flora booster 2LT,"$37.800,00","$30.240,00"
+FE0091,Namaste PH- 2LT,"$42.800,00","$34.240,00"
+FE0092,Namaste Oro negro 2LT,"$37.800,00","$30.240,00"
+FE0093,Namaste Amazonia 2LT,"$124.000,00","$99.200,00"
+FE0094,Namaste Detox 2LT,"$25.200,00","$20.160,00"
+FE0095,Namaste Trico + 1100grs,"$37.000,00","$29.600,00"
+FE0096,Namasté Nutripack 5/P,"$31.700,00","$25.360,00"
+FE0097,Nostress jabón potásico 250ml,"$4.300,00","$3.440,00"
+FE0098,Nostress trichodermas 100ml,"$8.700,00","$6.960,00"
+FE0099,Nostress melaza 1L,,"$0,00"
+FE0100,Nostress 100ml,,"$0,00"
+FE0101,Nostress original 250ml,,"$0,00"
+FE0102,Pangea,"$25.200,00","$20.160,00"
+FE0103,Pangea vital zinc 100m,"$4.000,00","$3.200,00"
+FE0104,Pangea alga Mater 100ml,"$6.600,00","$5.280,00"
+FE0105,Pangea bloom starter 100ml,"$5.400,00","$4.320,00"
+FE0106,Pangea pk engorde 100ml,"$5.400,00","$4.320,00"
+FE0107,Pangea juice 100ml,"$4.100,00","$3.280,00"
+FE0108,Pangea Last Chance 100ml,"$4.600,00","$3.680,00"
+FE0109,Pangea stinky 150g,"$6.600,00","$5.280,00"
+FE0110,Pangea healthy 300ml,,"$0,00"
+FE0111,Pangea wormhus humus 300ml,"$4.200,00","$3.360,00"
+FE0112,Pangea Van Helsing 300ml,"$4.600,00","$3.680,00"
+FE0113,Pangea D Killer 100g,"$3.400,00","$2.720,00"
+FE0114,Pangea Micorriza 100g,"$9.000,00","$7.200,00"
+FE0115,Pangea Micorriza 200g,"$15.000,00","$12.000,00"
+FE0116,Princesses j potásico 100ml,"$3.000,00","$2.400,00"
+FE0117,Top Crop Tripack 250,"$20.000,00","$16.000,00"
+FE0118,Top crop auto,"$33.000,00","$26.400,00"
+FE0119,Top Crop Budpack,"$42.000,00","$33.600,00"
+FE0120,Top crop cyclone 50g,"$8.600,00","$6.880,00"
+FE0121,Top crop Top veg 250ml,"$8.600,00","$6.880,00"
+FE0122,Top crop Top boom 250ml,"$8.600,00","$6.880,00"
+FE0123,Top crop deeper under 100ml,"$5.500,00","$4.400,00"
+FE0124,Top crop deeper under 250ml,"$12.000,00","$9.600,00"
+FE0125,Top crop auto 250ml,"$10.200,00","$8.160,00"
+FE0126,Top Crop Bud 250ml,"$32.400,00","$25.920,00"
+FE0127,Top crop top bud 100ml,"$19.000,00","$15.200,00"
+FE0128,Top crop top candy 250m,"$8.600,00","$6.880,00"
+FE0129,Top crop top big one 100ml,"$12.000,00","$9.600,00"
+FE0130,Top crop barrier 250ml,"$9.400,00","$7.520,00"
+FE0131,Top crop big one 250m,"$20.000,00","$16.000,00"
+FE0132,Top crop barrier 100ml,"$4.600,00","$3.680,00"
+FE0133,Top crop Cal Magic 250ml,"$6.600,00","$5.280,00"
+FE0134,Top Crop Veg 1L,"$21.000,00","$16.800,00"
+FE0135,top blom,"$21.000,00","$16.800,00"
+FE0136,Top Crop Candy 1L,"$21.000,00","$16.800,00"
+FE0137,The green nursery supermelaza 250ml,"$6.400,00","$5.120,00"
+FE0138,The green nursery fuego 250ml,"$5.600,00","$4.480,00"
+FE0139,Vamp hechizo veg,"$5.000,00","$4.000,00"
+FE0140,Vamp hechizo bloom,"$5.000,00","$4.000,00"
+FE0141,Vamp la vampimelaza,"$6.000,00","$4.800,00"
+FE0142,Vamp poción impkble,"$6.500,00","$5.200,00"
+FE0143,Vamp poción infernal,"$6.500,00","$5.200,00"
+FE0144,Vamp Guano murciélago veg,"$5.400,00","$4.320,00"
+FE0145,Vamp Guano murciélago flora,"$5.400,00","$4.320,00"
+FE0146,Vamp alquimia natural,"$5.400,00","$4.320,00"
+FE0147,Vamp bokashi veg,"$5.400,00","$4.320,00"
+FE0148,Vamp bokashi flora,"$5.400,00","$4.320,00"
+FE0179,Vamp polvo roca,"$4.800,00","$3.840,00"
+CAT,LATA Y FRASCOS HERMÉTICOS,,
+LA001,Bolsa recipiente Zeus,"$600,00","$480,00"
+LA002,Ciigarrera mexicana,"$10.000,00","$8.000,00"
+LA003,Lata Gizeh,"$7.000,00","$5.600,00"
+LA004,Lata element,"$6.700,00","$5.360,00"
+LA005,Lata prerolled raw,"$5.000,00","$4.000,00"
+LA006,Lata raw,"$7.100,00","$5.680,00"
+LA007,Latita raw redondo,"$4.000,00","$3.200,00"
+LA008,Lata Zeus,"$3.000,00","$2.400,00"
+LA009,LRC personajes,"$4.000,00","$3.200,00"
+LA010,LRC portasedas 78mm,"$4.200,00","$3.360,00"
+LA011,LRC portasedas 110mm,"$4.000,00","$3.200,00"
+LA012,Raw portasedas 78mm,"$4.000,00","$3.200,00"
+LA013,Raw portasedas 110mm,"$5.000,00","$4.000,00"
+LA014,Raw portasedas y rallador,"$8.600,00","$6.880,00"
+LA015,Recipiente rosin calavera,"$2.300,00","$1.840,00"
+LA016,Recipiente rosin triángulo,"$3.500,00","$2.800,00"
+LA017,Recipiente rosin redondo,"$2.300,00","$1.840,00"
+LA018,Recipiente rosin redondo grande,"$4.000,00","$3.200,00"
+LA019,Tabaquera GB,"$3.200,00","$2.560,00"
+LA020,Tabaquera Tobac cordura,"$11.000,00","$8.800,00"
+LA021,Zeus con tapa,"$7.000,00","$5.600,00"
+CAT,MACETAS,,
+MA001,Cuadradas 330cc,"$200,00","$160,00"
+MA002,Geotextil 5L,"$2.600,00","$2.080,00"
+MA003,Geotextil 10L,"$4.600,00","$3.680,00"
+MA004,Geotextil 15L,"$5.200,00","$4.160,00"
+MA005,Geotextil 20L,"$6.000,00","$4.800,00"
+MA006,Geotextil 25L,,"$0,00"
+MA007,Geotextil 30L,"$7.200,00","$5.760,00"
+MA008,Geotextil 40L,,"$0,00"
+MA009,Geotextil 60L,,"$0,00"
+MA010,Mad rocket 5L,"$4.200,00","$3.360,00"
+MA011,Mad rocket 25L,"$12.000,00","$9.600,00"
+MA012,Sopladas 3L,"$500,00","$400,00"
+MA013,Sopladas 5L,"$700,00","$560,00"
+MA014,Sopladas 10L,"$1.200,00","$960,00"
+MA015,Sopladas 12L,,"$0,00"
+MA016,Sopladas 15L,"$1.800,00","$1.440,00"
+MA017,Sopladas 20L,,"$0,00"
+MA018,Sopladas 23L,"$2.500,00","$2.000,00"
+MA019,Sopladas 30L,"$4.200,00","$3.360,00"
+CAT,PANELES LED,,
+FALSE,,,
+FALSE,,,
+FALSE,,,
+FALSE,,,
+FALSE,,,
+FALSE,,,
+CAT,PANELES GROWTECH,,
+PG001,100W Growtech,"$79.200,00",
+PG002,200W Growtech,"$133.300,00",
+PG003,300W Growtech,"$176.000,00",
+PG004,400W Growtech,"$220.000,00",
+PG005,600W Growtech,"$317.000,00",
+FALSE,,,
+CAT,PICADORES ,,
+P001,Amsterdam grande zeus 4/p,"$0,00",
+P002,Amsterdam LRC 2/p,"$14.700,00",
+P003,Amsterdam LRC 3/P,"$17.300,00",
+P004,Amsterdam LRC 4/p,"$17.300,00",
+P005,Acrilico gigante 2P,"$6.300,00",
+P006,Arturito stars wars,"$18.400,00",
+P007,Barril rojo 3p,"$12.000,00",
+P008,Bulldog 4p,"$0,00",
+P054,Bulldog 2p metal,"$10.350,00",
+P009,Bulldog azul acrílico 4p,"$0,00",
+P010,Calavera 3p,"$12.650,00",
+P011,Calavera Rey 3P,"$16.000,00",
+P012,Chala grande rojo 4p,"$0,00",
+P013,Cargador bala chico 3p,"$8.300,00",
+P014,Darth Vader stars wars,"$14.950,00",
+P015,Dragón Ball esfera 3p,"$0,00",
+P016,Deadpool,"$0,00",
+P017,DK Metal Chalas 3P C5031,"$15.000,00",
+P018,Escamas,"$6.670,00",
+P019,Esfera tornosolado 3p,"$11.500,00",
+P020,Estrella de la muerte,"$14.030,00",
+P021,Emoji 2P,"$0,00",
+P022,Ficha casino mediano 3P,"$14.000,00",
+P023,Ficha casino simple 2P,"$7.400,00",
+P024,Granada camuflado 3p,"$14.000,00",
+P025,Gizeh tornasol 4p,"$23.000,00",
+P026,Hamburguesa 3p,"$13.455,00",
+P027,LRC carving 4P,"$28.750,00",
+P028,LRC carving negro 2p,"$15.525,00",
+P029,LRC carving violeta 2p,"$18.400,00",
+P030,LRC ceramic 3P,"$33.100,00",
+P031,Metal Hexagonal 2P,"$7.400,00",
+P032,Minicogonauts,"$11.155,00",
+P033,Panal abeja 3P,"$11.300,00",
+P034,Pikacho 3p,"$11.960,00",
+P035,Pica mexicano 4p,"$11.040,00",
+P036,Pokebola,"$14.000,00",
+P037,Sauver acrilico 3P,"$3.500,00",
+P038,Stamps acrilico 2p,"$3.220,00",
+P039,Stamps acrilico 4p,"$5.000,00",
+P040,Tainer LRC,"$5.060,00",
+P041,Tainer 3rayos,"$4.600,00",
+P042,Tornasolado esfera 3p,"$14.490,00",
+P043,Tuqueros 420,"$7.475,00",
+P044,Yin Yang 4P,"$9.400,00",
+P045,Zeus acrilico chico,"$1.620,00",
+P046,Zeus acrilico grande,"$2.300,00",
+P047,Zeus Camaño 3p marron,"$5.060,00",
+P048,Zeus Camaño 3p marron,"$4.025,00",
+P049,Zeus Camaño colores grande,"$5.520,00",
+P050,Zeus con recipiente,"$10.235,00",
+P051,Zeus pica bandeja,"$4.600,00",
+P052,3Rayos colores 3p,"$11.385,00",
+P053,3rayos madera 4p,"$11.385,00",
+,,,
+,,,
+CAT,PIPAS Y TURBIBAS,,
+PI001,Metal martillo,"$3.000,00","$2.400,00"
+PI002,Pipa agua man,"$5.000,00","$4.000,00"
+PI003,Pipa bulldog,"$7.200,00","$5.760,00"
+PI004,Pipa calavera metal,"$7.000,00","$5.600,00"
+PI005,Pipa calavera tornasolado,,"$0,00"
+PI006,Pipa calavera vidrio,"$7.900,00","$6.320,00"
+PI007,Pipa DK metal flexible 8015,"$7.000,00","$5.600,00"
+PI008,PIPA DK PYREX BURBUJA TORNASOLADA,"$7.200,00","$5.760,00"
+PI009,Pipa hongo,,"$0,00"
+PI010,PIPA LARGA DK8187A TORNASOLADA,"$9.600,00","$7.680,00"
+PI011,Pipa madera,"$4.800,00","$3.840,00"
+PI012,Pipa madera triangulo,"$4.800,00","$3.840,00"
+PI013,PIPA METAL AMSTERDAM DK-8159,"$8.000,00","$6.400,00"
+PI014,Pipa metal Squadafum classic,"$20.600,00","$16.480,00"
+PI015,Pipa metal squadafum turbo,"$24.000,00","$19.200,00"
+PI016,Pipa metal squadafum ribs,"$18.800,00","$15.040,00"
+PI017,Pipa tallada,,"$0,00"
+PI018,Pipa tirabuzon colores,"$7.500,00","$6.000,00"
+PI019,Pirex vidrio dibujo,,"$0,00"
+PI020,Pirex vidrio largo,,"$0,00"
+PI021,SET PIPA + PICADOR + REJILLA + TORNASOLADA DK,"$12.800,00","$10.240,00"
+PI022,Silicona con palita,,"$0,00"
+PI023,Silicona de colores,,"$0,00"
+PI024,Silicona de dibujos,,"$0,00"
+PI025,Turbina chupete,,"$0,00"
+PI026,Turbina color gris,,"$0,00"
+PI029,Turbina DK bala tornasolada 8112,"$8.600,00","$6.880,00"
+PI027,Turbina DK boquilla vidrio 8037,"$10.400,00","$8.320,00"
+PI028,Turbina zeus vidrio limpiador,"$5.000,00","$4.000,00"
+CAT,PORTA FASO,,
+PO001,Gizeh,"$2.000,00","$1.600,00"
+PO002,LRC personajes,,"$0,00"
+PO003,Porta cuadrado y triángulo,,"$0,00"
+PO004,Reforzado,"$600,00","$480,00"
+PO005,Squadafum,"$2.000,00","$1.600,00"
+CAT,REGULARES DE HUMEDAD,,
+FALSE,Integra 8g 72%,"$4.700,00",
+FALSE,Integra 8g 55%,"$4.700,00",
+FALSE,Integra 4g 55%,"$2.800,00",
+CAT,SEDAS,,
+SE001,Dolar con tips,"$2.000,00",
+SE002,Fumanchu papel,"$1.000,00",
+SE003,Fumanchu Organico,"$1.000,00",
+SE004,LRC alfalfa,"$1.400,00",
+SE005,LRC alfalfa 110,"$1.600,00",
+SE006,LRC celulosas 110mm,"$3.000,00",
+SE007,LRC celulosas 78mm,"$2.000,00",
+SE008,LRC Duki negra 78mm,"$1.200,00",
+SE009,LRC Saborizadas,"$1.400,00",
+SE010,LRC unbleached 78mm,"$1.000,00",
+SE011,LRC unbleached ks 110mm,"$1.600,00",
+SE012,LRC 420 78mm,"$6.500,00",
+SE013,OCB premium,"$1.200,00",
+SE014,OCB X-pert,"$1.200,00",
+SE015,OCB Blanco,"$600,00",
+SE016,Pay Pay Go Green alfalfa 110mm,"$2.400,00",
+SE017,Pay Pay rollo go green alfalfa,"$3.000,00",
+SE018,Pay Pay Slim 110mm + tips,"$3.800,00",
+SE019,Pay Pay Ultrathin 110mm,"$2.400,00",
+SE020,Raw artesano 78mm +tips,"$6.000,00",
+SE021,Raw Black,"$1.400,00",
+SE022,Raw Black organic 110mm,"$3.300,00",
+SE023,Raw Clásico ,"$1.300,00",
+SE024,Raw Classic Connoisseur 78mm +tips,"$3.300,00",
+SE025,Raw Black organic 110mm,"$1.300,00",
+SE026,Rok 110mm x300,"$3.600,00",
+SE027,Stamps 110mm,"$1.500,00",
+SE028,Stamps x300,"$3.600,00",
+SE029,Stamps Cañamo 78mm,"$800,00",
+SE030,Stamps cáñamo 110mm,"$1.500,00",
+SE031,Stamps celulosas 78mm,"$1.600,00",
+SE032,The bulldog 78mm,"$1.000,00",
+SE033,Zeus celulosas,"$1.100,00",
+SE034,Zeus papel,"$800,00",
+SE035,Zeus ultrafino 78mm,"$1.300,00",
+SE036,Zeus 3 en 1,"$4.680,00",
+SE037,Zeus 78mm 300u mas ancho,"$2.500,00",
+SE038,Zeus 78mm 500u,"$4.000,00",
+SE039,3rayos 78mm,"$1.300,00",
+SE040,3rayos celulosas 420,"$3.300,00",
+CAT,SUSTRATO,,
+SU001,Cocomix 70L,"$35.000,00",
+SU002.,Coco Premium 25L Juani Juana,"$11.400,00",
+SU003,Elixir Liviano 25L,"$9.800,00",
+SU004,Elixir Premium 25L,"$9.300,00",
+SU005,Elixir Premium 50L,"$16.800,00",
+SU006,Elixir Liviano 50L,"$17.800,00",
+SU007,Elixir Liviano 80L,"$26.600,00",
+SU008,Elixir Premum 80L,"$25.000,00",
+SU009,Evolution Grow 20L,"$7.440,00",
+SU010,Princesses Growing Nutrition 20LT,"$15.000,00",
+SU011,Princesses Lombricompuesto 5DM,"$2.640,00",
+SU012,Princesses Profesional 80L,"$24.200,00",
+SU013,Vamp 10L,"$5.000,00",
+CAT,TABACO,,
+TA001,Cuatro leguas,"$2.800,00",
+TA002,Phillies blunt chocolate,"$8.740,00",
+TA003,Phillies blunt vainilla,"$8.740,00",
+TA004,Rok 30g,,
+TA005,Sayri 30g,"$4.200,00",
+TA006,Sayri 30g amasado nativo,"$4.500,00",
+TA007,Van haasen 30g,"$4.000,00",
+TA008,Van haasen 30g saborizados,"$4.000,00",
+TA009,Van kief 30g menta,"$4.000,00",
+TA010,Van kief 30g Cherry,"$4.000,00",
+CAT,TIPS ,,
+TI001,Filtro Gizeh 6mm 120u,"$2.200,00",
+TI002,Filtro Gizeh carbono 6mm 120u,"$2.800,00",
+TI003,Filtro Gizeh menthol 6mm 120u,"$2.200,00",
+TI004,Filtro Gizeh XXL 6mm 120u,"$2.200,00",
+TI005,LRC,"$1.000,00",
+TI006,Moon chico ,,
+TI007,Moom grande,"$500,00",
+TI008,Raw Cone Tips,"$1.500,00",
+TI009,Rok,"$500,00",
+TI010,Stamps,"$700,00",
+TI011,Smoking Mentolado,"$2.200,00",
+CAT,VARIOS,,
+,Balanza,"$7.935,00",
+,Cooler listo para usar,"$23.000,00",
+,Filtro juani juana,"$44.000,00",
+,HTC higrometro,"$9.258,00",
+,Keep it Fresh 120 doble costura,"$16.000,00",
+,Keep it Fresh 150 doble costura,"$16.000,00",
+,Keep it Fresh 120 doble costura,"$16.000,00",
+,Keep it Fresh 25 doble costura,"$23.000,00",
+,Keep it Fresh 90 doble costura,"$16.000,00",

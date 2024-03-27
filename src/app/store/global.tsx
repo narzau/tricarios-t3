@@ -1,10 +1,10 @@
-import type { BaseProduct, StockedProduct } from '@prisma/client';
+import type { BaseProduct, Category, StockedProduct } from '@prisma/client';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface StoreProduct extends StockedProduct {
     quantity: number;
-    product: BaseProduct;
+    product: BaseProduct & { category: Category};
 }
 
 interface SalesCartStoreState {
