@@ -92,7 +92,15 @@ export const productRouter = createTRPCRouter({
             contains: input?.nameFilter ?? "",
             mode: "insensitive",
           }},
-  ]
+          {
+            category: {
+              name: {
+                contains: input?.nameFilter ?? "",
+                mode: "insensitive",
+              }
+            }
+          }
+        ]
       };
       return await ctx.db.baseProduct.findMany({
         skip: input?.skip,
@@ -114,27 +122,41 @@ export const productRouter = createTRPCRouter({
       nameFilter: z.string().optional(),
     }))
     .query(async ({ ctx, input }) => {
+      const whereConditions: Prisma.BaseProductWhereInput = {
+        OR: [
+          {displayName: {
+            contains: input?.nameFilter ?? "",
+            mode: "insensitive",
+          }},
+          {code: {
+            contains: input?.nameFilter ?? "",
+            mode: "insensitive",
+          }},
+          {brand: {
+            contains: input?.nameFilter ?? "",
+            mode: "insensitive",
+          }},
+          {
+            category: {
+              name: {
+                contains: input?.nameFilter ?? "",
+                mode: "insensitive",
+              }
+            }
+          }
+        ]
+      };
       const totalCount = await ctx.db.stockedProduct.count({
         where: {
-          product: {
-            displayName: {
-              contains: input?.nameFilter,
-              mode: "insensitive",
-            },
-          },
+          product: whereConditions,
         },
       });
-  
+
       const items = await ctx.db.stockedProduct.findMany({
         skip: input?.skip,
         take: input?.take,
         where: {
-          product: {
-            displayName: {
-              contains: input?.nameFilter,
-              mode: "insensitive",
-            },
-          },
+          product: whereConditions,
         },
         include: { product: {
           include: {

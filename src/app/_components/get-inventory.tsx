@@ -1,6 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { api } from "~/trpc/react";
 import { type StoreProduct, useSalesCartStore } from "../store/global";
 
@@ -65,13 +65,29 @@ export const GetInventory: React.FC = () => {
     const handlePageChange = (page: number) => {
       setCurrentPage(page);
     };
+
+    useEffect(() => {
+      // Reset current page to 1 when search term changes
+      setCurrentPage(1);
+    }, [searchTerm]);
     
     const handleDeleteStockedProduct = async (productId: number) => {
        deleteStockedProduct.mutate({ id: productId });
        removeProductFromCartById(productId)
     }
+
+    const visiblePageRange = () => {
+      const rangeSize = 5;
+      const halfRange = Math.floor(rangeSize / 2);
+      let start = Math.max(1, currentPage - halfRange);
+      let end = Math.min(start + rangeSize - 1, totalPages);
+      if (end - start + 1 < rangeSize) {
+        start = Math.max(1, end - rangeSize + 1);
+      }
+      return { start, end };
+    };
     return (
-      <div className="overflow-x-hiden border border-gray-200 rounded-lg h-screen shadow-lg ">
+      <div className="overflow-x-hidden border border-gray-200 rounded-lg h-screen shadow-lg ">
         <input
              onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -98,7 +114,7 @@ export const GetInventory: React.FC = () => {
                 Precio de lista
               </th>
               <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
-                Cantidad en stock
+                Stock
               </th>
               <th scope="col" className="px-6 py-3  font-semibold text-gray-500 uppercase">
                 Descuento
@@ -234,23 +250,40 @@ export const GetInventory: React.FC = () => {
           </tbody>
           
         </table>
-        <div className="mt-4  z-30  fixed bottom-2 self-center left-1/2 ">
-          <div className="flex w-full self-center justify-center items-center">
-            {Array.from({ length: totalPages }, (_, index) => (
+        <div className="mt-4 z-30 fixed bottom-2 w-full flex items-center justify-center">
+          <div className="flex self-center ">
+            <button
+              className={`px-3 py-1 mx-1 rounded-md ${
+                currentPage === 1 ? "bg-green-500/80 text-gray-700" : "bg-gray-300 text-gray-700"
+              }`}
+              onClick={() => handlePageChange(1)}
+            >
+              Primera
+            </button>
+            {/* Visible page buttons */}
+            {Array.from({ length: visiblePageRange().end - visiblePageRange().start + 1 }, (_, index) => (
               <button
-                key={index}
+                key={visiblePageRange().start + index}
                 className={`px-3 py-1 mx-1 rounded-md ${
-                  currentPage === index + 1
+                  currentPage === visiblePageRange().start + index
                     ? "bg-green-500/80 text-gray-700"
                     : "bg-gray-300 text-gray-700"
                 }`}
-                onClick={() => handlePageChange(index + 1)}
+                onClick={() => handlePageChange(visiblePageRange().start + index)}
               >
-                {index + 1}
+                {visiblePageRange().start + index}
               </button>
             ))}
+            {/* Last page button */}
+            <button
+              className={`px-3 py-1 mx-1 rounded-md ${
+                currentPage === totalPages ? "bg-green-500/80 text-gray-700" : "bg-gray-300 text-gray-700"
+              }`}
+              onClick={() => handlePageChange(totalPages)}
+            >
+              Ultima
+            </button>
           </div>
-          
         </div>
       </div>
     );
