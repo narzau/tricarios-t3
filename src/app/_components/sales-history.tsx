@@ -1,14 +1,21 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import { api } from '~/trpc/react';
 
 export const SalesHistory: React.FC = () => {
+    const PAGE_SIZE = 10;
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const salesResult = api.product.querySales.useQuery({
+        skip: (currentPage - 1) * PAGE_SIZE,
+        take: PAGE_SIZE,
+      });
+      
+      
 
   
-    const salesResult = api.product.querySales.useQuery({
-      
-    });
+
     const sales = salesResult.data;
+    console.log(sales)
     function formatDate(date: Date) {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -47,7 +54,7 @@ export const SalesHistory: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 text-lg">
-                    {sales ? sales.map((sale) => (
+                    {sales ? sales.sales.map((sale) => (
                         <tr key={sale.id}>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className=" text-gray-900">{sale.id}</div>
@@ -82,6 +89,37 @@ export const SalesHistory: React.FC = () => {
                     }
                 </tbody>
             </table>
+            <div className='flex fixed bottom-5 mx-auto items-center justify-center w-full'>
+                <div className="flex justify-center mt-4">
+                    <button
+                        className="px-3 py-1 mx-1 rounded-md bg-green-500/80 text-gray-700"
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage(1)}
+                    >
+                        Primera
+                    </button>
+                    {Array.from({ length: Math.ceil(salesResult.data?.totalCount / PAGE_SIZE) }, (_, index) => (
+                        <button
+                        key={index}
+                        className={`px-3 py-1 mx-1 rounded-md ${
+                            currentPage === index + 1 ? "bg-green-500/80 text-gray-700" : "bg-gray-300 text-gray-700"
+                        }`}
+                        onClick={() => setCurrentPage(index + 1)}
+                        >
+                        {index + 1}
+                        </button>
+                    ))}
+                    <button
+                        className="px-3 py-1 mx-1 rounded-md bg-green-500/80 text-gray-700"
+                        disabled={currentPage === Math.ceil(salesResult.data?.totalCount / PAGE_SIZE)}
+                        onClick={() => setCurrentPage(Math.ceil(salesResult.data?.totalCount / PAGE_SIZE))}
+                    >
+                        Última
+                    </button>
+                </div>
+
+            </div>
+
         </div>
     );
 };
