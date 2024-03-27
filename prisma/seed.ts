@@ -17,6 +17,19 @@ interface Category {
 
 const prisma = new PrismaClient();
 
+function parsePrice(priceString: string): number {
+  // Remove all non-digit characters except dots and commas
+  const cleanedPriceString = priceString.replace(/[^\d.,-]/g, '');
+  // Replace dots with an empty string to remove them
+  const dotRemovedPriceString = cleanedPriceString.replace('.', '');
+  // Replace commas with dots for proper decimal parsing
+  const dotFormattedPriceString = dotRemovedPriceString.replace(',', '.');
+  // Parse as float
+  const price = parseFloat(dotFormattedPriceString);
+  // Return the parsed price or default to 0 if parsing fails
+  return isNaN(price) ? 0 : price;
+}
+
 async function main() {
     try {
         // Create the initial user
@@ -54,7 +67,7 @@ async function main() {
                         const product: Product = {
                             code: CODIGO == 'FALSE' ? undefined : CODIGO,
                             name: articleCategory,
-                            price: parseFloat(PRECIO) || 0,
+                            price: parsePrice(PRECIO),
                             wholesalePrice: parseFloat(wholesalePrice ?? 0)
                         };
                         currentCategory.products.push(product);
