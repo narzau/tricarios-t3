@@ -89,7 +89,7 @@ export const GetInventory: React.FC = () => {
       const rangeSize = 5;
       const halfRange = Math.floor(rangeSize / 2);
       let start = Math.max(1, currentPage - halfRange);
-      let end = Math.min(start + rangeSize - 1, totalPages);
+      const end = Math.min(start + rangeSize - 1, totalPages);
       if (end - start + 1 < rangeSize) {
         start = Math.max(1, end - rangeSize + 1);
       }

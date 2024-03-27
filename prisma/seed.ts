@@ -38,6 +38,7 @@ async function main() {
             update: {},
             create: {
                 email: 'admin@admin.com',
+                id: 'cltzgv0j40000wywb94k0mo1b',
                 name: 'Alice',
                 password: await bcrypt.hash('admin', 10),
             },
