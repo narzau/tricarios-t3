@@ -227,24 +227,30 @@ export const productRouter = createTRPCRouter({
         });
       }
     }),
-  querySales: protectedProcedure
+    querySales: protectedProcedure
     .input(z.object({ 
-      skip: z.number().default(0), 
-      take: z.number().default(20),
+        skip: z.number().default(0), 
+        take: z.number().default(20),
+        nameFilter: z.string().optional(),
     }))
     .query(async ({ ctx, input }) => {
-      return await ctx.db.sale.findMany({
-        skip: input.skip,
-        take: input.take,
-        include: { soldProducts: {
-          include: {
-            product: true
-          }
-        } },
-        orderBy: {
-          createdAt: "desc"
-        }
-      });
+        const whereConditions: Prisma.SaleWhereInput = {
+            // Aquí puedes agregar condiciones de filtrado si es necesario
+        };
+
+        // Calcular el totalCount
+        const totalCount = await ctx.db.sale.count({ where: whereConditions });
+
+        // Obtener las ventas paginadas
+        const sales = await ctx.db.sale.findMany({
+            skip: input.skip,
+            take: input.take,
+            where: whereConditions,
+            include: { soldProducts: { include: { product: true } } },
+            orderBy: { createdAt: "desc" },
+        });
+
+        return { totalCount, sales };
     }),
   deleteStockedProduct: protectedProcedure
     .input(z.object({ id: z.number() }))
