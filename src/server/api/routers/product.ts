@@ -227,15 +227,27 @@ export const productRouter = createTRPCRouter({
         });
       }
     }),
-  querySales: protectedProcedure
+    querySales: protectedProcedure
     .input(z.object({ 
       skip: z.number().default(0), 
       take: z.number().default(20),
+      startDate: z.string().optional(),
+      endDate: z.string().optional(),
     }))
     .query(async ({ ctx, input }) => {
+      let where = {};
+      if (input.startDate && input.endDate) {
+        where = {
+          createdAt: {
+            gte: new Date(input.startDate),
+            lte: new Date(input.endDate),
+          },
+        };
+      }
       return await ctx.db.sale.findMany({
         skip: input.skip,
         take: input.take,
+        where,
         include: { soldProducts: {
           include: {
             product: true
@@ -246,6 +258,7 @@ export const productRouter = createTRPCRouter({
         }
       });
     }),
+
   deleteStockedProduct: protectedProcedure
     .input(z.object({ id: z.number() }))
     .mutation(async ({ ctx, input }) => {

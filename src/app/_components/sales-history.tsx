@@ -1,12 +1,23 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import { api } from '~/trpc/react';
 
 export const SalesHistory: React.FC = () => {
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [endDate, setEndDate] = useState<Date | null>(null);
+
+    const handleStartDateChange = (date: Date | null) => {
+        setStartDate(date);
+    };
+
+    const handleEndDateChange = (date: Date | null) => {
+        setEndDate(date);
+    };
 
   
     const salesResult = api.product.querySales.useQuery({
-      
+        startDate: startDate?.toISOString(),
+        endDate: endDate?.toISOString(),
     });
     const sales = salesResult.data;
     function formatDate(date: Date) {
@@ -23,6 +34,28 @@ export const SalesHistory: React.FC = () => {
 
     return (
         <div className="overflow-y-scroll border border-gray-200 rounded-lg shadow-lg h-screen max-h-screen overflox-x-hidden">
+            <div className="flex justify-between px-4 py-2">
+                <div className="flex items-center">
+                    <label htmlFor="startDate" className="mr-2">Fecha de Inicio:</label>
+                    <input
+                        type="date"
+                        id="startDate"
+                        name="startDate"
+                        value={startDate ? startDate.toISOString().substr(0, 10) : ''}
+                        onChange={e => handleStartDateChange(new Date(e.target.value))}
+                    />
+                </div>
+                <div className="flex items-center">
+                    <label htmlFor="endDate" className="mr-2">Fecha de Término:</label>
+                    <input
+                        type="date"
+                        id="endDate"
+                        name="endDate"
+                        value={endDate ? endDate.toISOString().substr(0, 10) : ''}
+                        onChange={e => handleEndDateChange(new Date(e.target.value))}
+                    />
+                </div>
+            </div>
             <table className="min-w-full divide-y divide-gray-200 text-center">
                 <thead className="bg-gray-50 text-md">
                     <tr>
